@@ -1,4 +1,7 @@
+require('dotenv').config();
+
 const { ApolloServer } = require('apollo-server');
+const mongoose = require('mongoose');
 const gql = require('graphql-tag');
 
 const typeDefs = gql`
@@ -17,7 +20,22 @@ const server = new ApolloServer({
 	resolvers
 });
 
+const URI = process.env.MONGO_URI;
+const OPS = {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+};
 
-server.listen({port: 5000}).then(res => {
-	console.log("Server running on: " + res.url);
+mongoose.connect(URI, OPS, (err) => {
+	if (err) {
+		console.error(err);
+		process.exit(1);
+	}
+
+	server.listen({port: 5000}).then(res => {
+		console.log("Server running on: " + res.url);
+	});
+
 });
+
+
