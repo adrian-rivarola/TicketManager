@@ -3,7 +3,7 @@ const events_resolvers = require('./events');
 
 module.exports = {
 	Query: {
-		helloWorld: () => 'Hello World'
+		...events_resolvers.Query
 	},
 	Mutation: {
 		...users_resolvers.Mutation,

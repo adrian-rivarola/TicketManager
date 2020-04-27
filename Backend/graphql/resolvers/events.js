@@ -20,7 +20,16 @@ async function crear_evento(_, { eventInput }, context) {
 	return event;
 }
 
+async function ver_eventos() {
+	const eventos = await Event.find({}).populate('organizer', 'username');
+	// TODO: Agregar filtros según la fecha del evento
+	return eventos || [];
+}
+
 module.exports = {
+	Query: {
+		ver_eventos
+	},
 	Mutation: {
 		crear_evento
 	}

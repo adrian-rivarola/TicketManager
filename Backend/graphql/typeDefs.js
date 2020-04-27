@@ -26,7 +26,7 @@ module.exports = gql`
 		location:String!
 	}
 	type Query {
-		helloWorld: String!
+		ver_eventos: [Event]!
 	}
 	type Mutation {
 		register(registerInput: RegisterInput): User!
