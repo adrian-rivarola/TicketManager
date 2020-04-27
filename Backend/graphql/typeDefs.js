@@ -5,6 +5,7 @@ module.exports = gql`
 		id: ID!
 		username: String!
 		authToken: String!
+		tickets: [Ticket]!
 	}
 	type Event {
 		id: ID!
