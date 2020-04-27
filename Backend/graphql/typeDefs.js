@@ -33,7 +33,7 @@ module.exports = gql`
 	}
 	input TicketInput {
 		event: ID!
-		owner: ID!
+		owner: String!
 	}
 	type Query {
 		ver_eventos: [Event]!

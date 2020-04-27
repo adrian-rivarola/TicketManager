@@ -15,7 +15,7 @@ async function crear_ticket(_, { ticketInput }, context) {
 		throw new Error('Operación no permitida');
 	}
 
-	const owner = await User.findById(ticketInput.owner);
+	const owner = await User.findOne({ username: ticketInput.owner });
 	if (!owner) {
 		throw new Error('Usuario no encontrado');
 	}
