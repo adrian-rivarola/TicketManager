@@ -7,6 +7,7 @@ module.exports = gql`
 		authToken: String!
 	}
 	type Event {
+		id: ID!
 		organizer: User!
 		name: String!
 		description: String!
@@ -19,7 +20,6 @@ module.exports = gql`
 		confirmPassord: String!
 	}
 	input EventInput {
-		organizer: ID!
 		name: String!
 		description: String!
 		date: String!
