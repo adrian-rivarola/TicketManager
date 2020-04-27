@@ -14,6 +14,12 @@ module.exports = gql`
 		date: String!
 		location:String!
 	}
+	type Ticket {
+		id: ID!
+		event: Event!
+		owner: User!
+		isValid: Boolean!
+	}
 	input RegisterInput {
 		username: String!
 		password: String!
@@ -25,12 +31,20 @@ module.exports = gql`
 		date: String!
 		location:String!
 	}
+	input TicketInput {
+		event: ID!
+		owner: ID!
+	}
 	type Query {
 		ver_eventos: [Event]!
+		ver_tickets: [Ticket]!
 	}
 	type Mutation {
 		register(registerInput: RegisterInput): User!
 		login(username:String! password:String!): User!
+		
 		crear_evento(eventInput:EventInput!): Event!
+
+		crear_ticket(ticketInput:TicketInput!): Ticket!
 	}
 `;
