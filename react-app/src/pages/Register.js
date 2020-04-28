@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
 import { useForm } from '../util/hooks';
 
 import gql from 'graphql-tag';
 
-export default function Register(props) {
+import { AuthContext } from '../context/auth';
 
-	const [errors, setErrors] = useState([]);
+export default function Register(props) {
+	const context = useContext(AuthContext);
+
 	const { values, onSubmit, onChange } = useForm(registerCB, {
 		username: '',
 		password: '',
@@ -15,12 +17,12 @@ export default function Register(props) {
 	});
 
 	const [addUser, { loading }] = useMutation(REGISTER_MUTATION, {
-		update(_, result) {
-			console.log(result);
+		update(_, { data: { register: userData }}) {
+			context.login(userData);
 			props.history.push('/');
 		},
 		onError(err) {
-			console.error(err);
+			alert(JSON.stringify(err));
 		},
 		variables: values
 	})
@@ -31,7 +33,7 @@ export default function Register(props) {
 
 	return (
 		<div>
-			<Form onSubmit={onSubmit} noValidate className={loading ? 'loading':''} >
+			<Form onSubmit={onSubmit} loading={loading} noValidate >
 				<h1>Registrarse</h1>
 				<br />
 				<Form.Input

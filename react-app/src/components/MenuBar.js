@@ -1,47 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
+import { AuthContext } from '../context/auth';
+
 export default function MenuBar(props) {
   const pathname = window.location.pathname,
         path = pathname === '/' ? 'home' : pathname.substr(1);
-  
 
   const [activeItem, setActiveItem] = useState(path);
+  const { user, logout } = useContext(AuthContext);
 
   const handleClick = (e, { name }) => setActiveItem(name);
 
-  return (
-    <div>
-      <Menu pointing secondary size="massive" color="teal">
+  const menuItems = user
+  ? (
+      <React.Fragment>
         <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
-          onClick={handleClick}
-          as={Link}
+          name={ user.username }
+          onClick={ handleClick }
+          as={ Link }
           to='/'
+          active
           replace
         />
         <Menu.Menu position='right'>
           <Menu.Item
-            name='login'
-            active={ activeItem === 'login' }
-            onClick={ handleClick }
-            as={ Link }
-            to='/login'
-            replace
-          />
-          <Menu.Item
-            name='register'
-            active={ activeItem === 'register' }
-            onClick={ handleClick }
-            as={ Link }
-            to='/register'
-            replace
+            name='cerrar sesion'
+            onClick={ logout }
           />
         </Menu.Menu>
-      </Menu>
-    </div>
+      </React.Fragment>
+  )
+  : (
+    <React.Fragment> 
+      <Menu.Item
+        name='home'
+        active={activeItem === 'home'}
+        onClick={handleClick}
+        as={Link}
+        to='/'
+        replace
+      />
+      <Menu.Menu position='right'>
+        <Menu.Item
+          name='login'
+          active={ activeItem === 'login' }
+          onClick={ handleClick }
+          as={ Link }
+          to='/login'
+          replace
+        />
+        <Menu.Item
+          name='register'
+          active={ activeItem === 'register' }
+          onClick={ handleClick }
+          as={ Link }
+          to='/register'
+          replace
+        />
+      </Menu.Menu>
+    </React.Fragment>
+  )
+
+  return (
+    <Menu pointing secondary size="massive" color="teal">
+      { menuItems }
+    </Menu>
   )
 }
