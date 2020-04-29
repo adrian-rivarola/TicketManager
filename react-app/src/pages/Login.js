@@ -12,8 +12,7 @@ export default function Login(props) {
 
 	const { values, onSubmit, onChange } = useForm(loginCB, {
 		username: '',
-		password: '',
-		confirmPassword: ''
+		password: ''
 	});
 
 	const [addUser, { loading }] = useMutation(LOGIN_MUTATION, {
@@ -67,7 +66,7 @@ const LOGIN_MUTATION = gql`
 			username: $username
 			password: $password
 		) {
-			id username authToken tickets { id }
+			id username authToken
 		}
 	}
 `;

@@ -1,0 +1,13 @@
+.ticket-group {
+	margin: 25px 5px !important;
+}
+.qr-code {
+	margin: auto !important;
+}
+
+@media(min-width: 720px) {
+	#root {
+		width: 75%;
+		margin: auto;
+	}
+}
