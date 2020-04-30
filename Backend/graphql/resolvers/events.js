@@ -20,8 +20,10 @@ async function crear_evento(_, { eventInput }, context) {
 	return event;
 }
 
-async function ver_eventos() {
-	const eventos = await Event.find({}).populate('organizer', 'username');
+async function ver_eventos(_, __, context) {
+	const { id } = validar_usuario(context);
+
+	const eventos = await Event.find({organizer: id}).populate('organizer', 'username');
 	// TODO: Agregar filtros según la fecha del evento
 	return eventos || [];
 }
