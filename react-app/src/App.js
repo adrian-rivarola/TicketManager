@@ -16,7 +16,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import CrearEvento from './pages/CrearEvento';
-
+import ListaEventos from './pages/ListaEventos';
 
 export default function App() {
 	return (
@@ -26,7 +26,7 @@ export default function App() {
 	    		<MenuBar />
 		    	<Route exact path='/' component={Home} />
 		    	<Route exact path='/crear-evento' component={CrearEvento} />
-		    	
+		    	<Route exact path='/mis-eventos' component={ListaEventos} />
 		    	<AuthRoute exact path='/login' component={Login} />
 		    	<AuthRoute exact path='/register' component={Register} />
 		    </Container>
