@@ -19,10 +19,18 @@ export default function MenuBar(props) {
       <React.Fragment>
         <Menu.Item
           name={ user.username }
+          active={activeItem === user.username || activeItem === 'home'}
           onClick={ handleClick }
           as={ Link }
           to='/'
-          active
+          replace
+        />
+        <Menu.Item
+          name="CrearEvento"
+          active={activeItem === "CrearEvento"}
+          onClick={ handleClick }
+          as={ Link }
+          to='/crear-evento'
           replace
         />
         <Menu.Menu position='right'>
@@ -65,7 +73,7 @@ export default function MenuBar(props) {
   )
 
   return (
-    <Menu pointing secondary size="massive" color="teal">
+    <Menu color="teal">
       { menuItems }
     </Menu>
   )

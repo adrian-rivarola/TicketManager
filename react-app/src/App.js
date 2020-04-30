@@ -15,6 +15,8 @@ import MenuBar from './components/MenuBar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CrearEvento from './pages/CrearEvento';
+
 
 export default function App() {
 	return (
@@ -23,6 +25,8 @@ export default function App() {
 	    	<Container>
 	    		<MenuBar />
 		    	<Route exact path='/' component={Home} />
+		    	<Route exact path='/crear-evento' component={CrearEvento} />
+		    	
 		    	<AuthRoute exact path='/login' component={Login} />
 		    	<AuthRoute exact path='/register' component={Register} />
 		    </Container>

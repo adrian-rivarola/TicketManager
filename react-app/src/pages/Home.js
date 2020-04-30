@@ -23,9 +23,9 @@ function UserHome(props) {
 		  </Divider>
 		  { !loading &&
 			  <Card.Group stackable itemsPerRow={2} className="ticket-group" >
-				  { data.ver_tickets.length > 0
+				  { data && data.ver_tickets.length > 0
 				  	? data.ver_tickets.map((ticket, idx) => <Ticket ticket={ticket} key={idx} />)
-				  	: <Card header="Aún no tienes tickets :(" />
+				  	: <Card header="Aún no tienes tickets :(" fluid />
 				  }
 				</Card.Group>
 			}
