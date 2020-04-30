@@ -41,6 +41,14 @@ export default function MenuBar(props) {
           to='/mis-eventos'
           replace
         />
+        <Menu.Item
+          name="VerificarTickets"
+          active={activeItem === "VerificarTickets"}
+          onClick={ handleClick }
+          as={ Link }
+          to='/verificar-ticket'
+          replace
+        />
         <Menu.Menu position='right'>
           <Menu.Item
             name='cerrar sesion'

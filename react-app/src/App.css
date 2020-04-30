@@ -19,4 +19,8 @@
 		width: 75%;
 		margin: auto;
 	}
+	.ticket-scanner {
+		width: 50%;
+		margin: auto !important;
+	}
 }
