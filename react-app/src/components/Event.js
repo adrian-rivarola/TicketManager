@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { Modal, Icon, Card } from 'semantic-ui-react';
 
+import TicketForm from './TicketForm';
+
 export default function Event({ event }) {
 	const [showModal, setShowModal] = useState(false);
 
@@ -24,7 +26,7 @@ const EventModal = ({ event, open, hideModal }) => (
 		onClose={hideModal} 
 	>
     <Modal.Content>
- 	     
+ 	    <TicketForm event={event} />
     </Modal.Content>
   </Modal>
 );
