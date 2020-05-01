@@ -43,11 +43,27 @@ async function crear_ticket(_, { ticketInput }, context) {
 	return ticket
 }
 
+async function validar_ticket(_, { id: ticket_id }, context) {
+	const { id } = validar_usuario(context);
+
+	const ticket = await Ticket.findById(ticket_id).populate('event').populate('owner');
+	if (!ticket || !ticket.isValid) {
+		throw new Error('Ticket inválido');
+	}
+
+	if (ticket.event.organizer.toString() !== id) {
+		throw new Error('Operación no permitida');
+	}
+
+	return ticket;
+}
+
 module.exports = {
 	Query: {
 		ver_tickets
 	},
 	Mutation: {
-		crear_ticket
+		crear_ticket,
+		validar_ticket
 	}
 }

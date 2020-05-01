@@ -47,5 +47,6 @@ module.exports = gql`
 		crear_evento(eventInput:EventInput!): Event!
 
 		crear_ticket(ticketInput:TicketInput!): Ticket!
+		validar_ticket(id: ID!): Ticket!
 	}
 `;
