@@ -16,7 +16,7 @@ export default function CrearEvento(props) {
 
 	const [createEvent, { loading }] = useMutation(CREAR_EVENTO, {
 		update(_, {data: { crear_evento }}) {
-			props.history.push('/mi-eventos');
+			props.history.push('/mis-eventos');
 		},
 		onError(err) {
 			alert(JSON.stringify(err));

@@ -37,7 +37,7 @@ export default function VerificarTicket(props) {
 		  <div className="ticket-scanner">
 		  	{ !results
 		  		? <QrReader
-		          delay={500}
+		          delay={300}
 		          onError={err => alert(JSON.stringify(err)) }
 		          onScan={handleScan}
 		        />
@@ -46,7 +46,7 @@ export default function VerificarTicket(props) {
 					    <Card.Content description={`Este ticket pertenece a ${results.owner.username}`} />
 					    <Card.Content extra>
 					      <Button color="teal" basic onClick={ev => setResults('')}>
-					      	Escanear
+					      	Volver a escanear
 					      </Button>
 					    </Card.Content>
 				  </Card>
@@ -61,12 +61,14 @@ const VALIDAR_TICKET_MUTATION = gql`
 		validar_ticket(id: $id) {
 			id
 			event {
+				id
 				name
 				description
 				date
 				location
 			}
 			owner {
+				id
 				username
 			}
 		}
