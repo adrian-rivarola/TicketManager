@@ -7,6 +7,11 @@
 	margin: auto !important;	
 	padding: 20px;
 }
+.user-form {
+	width: 350px;
+	margin: auto !important;	
+	padding: 20px;
+}
 .ticket-group {
 	margin: 25px 5px !important;
 }
@@ -22,5 +27,11 @@
 	.ticket-scanner {
 		width: 50%;
 		margin: auto !important;
+	}
+}
+
+@media(max-width: 480px) {
+	.user-form {
+		width: 80%;
 	}
 }
