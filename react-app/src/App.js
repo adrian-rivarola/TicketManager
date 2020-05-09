@@ -24,7 +24,7 @@ export default function App() {
 		<AuthProvider>
 			<Router>
 	    	<Container>
-	    		<MenuBar />
+	    		<Route path='/' component={MenuBar} />
 		    	<Route exact path='/' component={Home} />
 		    	<Route exact path='/crear-evento' component={CrearEvento} />
 		    	<Route exact path='/mis-eventos' component={ListaEventos} />
