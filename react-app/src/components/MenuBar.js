@@ -6,7 +6,7 @@ import { Menu } from 'semantic-ui-react';
 import { AuthContext } from '../context/auth';
 
 export default function MenuBar(props) {
-  const [activeItem, setActiveItem] = useState(window.location.pathname);
+  const [activeItem, setActiveItem] = useState(props.history.location.pathname);
   const { user, logout } = useContext(AuthContext);
   
   const handleLogout = () => {
@@ -22,7 +22,7 @@ export default function MenuBar(props) {
     return () => {
       unlisten();
     }
-  }, []);
+  }, [props.history]);
 
   return (
     <Menu color='teal'>
