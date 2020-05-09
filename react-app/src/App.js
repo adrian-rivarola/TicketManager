@@ -15,7 +15,6 @@ import MenuBar from './components/MenuBar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import CrearEvento from './pages/CrearEvento';
 import ListaEventos from './pages/ListaEventos';
 import VerificarTicket from './pages/VerificarTicket';
 
@@ -26,7 +25,6 @@ export default function App() {
 	    	<Container>
 	    		<Route path='/' component={MenuBar} />
 		    	<Route exact path='/' component={Home} />
-		    	<Route exact path='/crear-evento' component={CrearEvento} />
 		    	<Route exact path='/mis-eventos' component={ListaEventos} />
 		    	<Route exact path='/verificar-ticket' component={VerificarTicket} />
 		    	<AuthRoute exact path='/login' component={Login} />

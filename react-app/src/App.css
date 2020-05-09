@@ -18,7 +18,16 @@
 .qr-code {
 	margin: auto !important;
 }
-
+.new-event {
+	text-align: center;
+	width: 500px !important;
+	margin-top: 25px !important;
+	margin-bottom: 25px !important;
+}
+.event-msg {
+	margin: auto !important;
+	width: 500px !important;
+}
 @media(min-width: 720px) {
 	#root {
 		width: 75%;

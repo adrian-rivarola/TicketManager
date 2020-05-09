@@ -8,7 +8,7 @@ export default function Event({ event }) {
 	const [showModal, setShowModal] = useState(false);
 
 	return (
-		<Card onClick={ev => setShowModal(true)}>
+		<Card onClick={ev => setShowModal(true)} className="new-event" centered>
 			<EventModal event={event} open={showModal} hideModal={() => setShowModal(false)} />
 	    <Card.Content header={event.name}  />
 	    <Card.Content description={event.description} />
