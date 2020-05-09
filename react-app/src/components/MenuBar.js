@@ -8,6 +8,11 @@ import { AuthContext } from '../context/auth';
 export default function MenuBar(props) {
   const [activeItem, setActiveItem] = useState(window.location.pathname);
   const { user, logout } = useContext(AuthContext);
+  
+  const handleLogout = () => {
+    logout()
+    props.history.push("/");
+  }
 
   useEffect(() => {
     const unlisten = props.history.listen((location, action) => {
@@ -31,13 +36,6 @@ export default function MenuBar(props) {
       { user
         ? <React.Fragment>
             <Menu.Item
-              name='CrearEvento'
-              active={activeItem === '/crear-evento'}
-              as={ Link }
-              to='/crear-evento'
-              replace
-            />
-            <Menu.Item
               name='MisEventos'
               active={activeItem === '/mis-eventos'}
               as={ Link }
@@ -54,7 +52,7 @@ export default function MenuBar(props) {
             <Menu.Menu position='right'>
               <Menu.Item
                 name='cerrar sesion'
-                onClick={logout}
+                onClick={handleLogout}
               />
             </Menu.Menu>
           </React.Fragment>
