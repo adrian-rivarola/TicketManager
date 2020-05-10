@@ -16,6 +16,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ListaEventos from './pages/ListaEventos';
+import NuevoEvento from './pages/NuevoEvento';
 import VerificarTicket from './pages/VerificarTicket';
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
 	    		<Route path='/' component={MenuBar} />
 		    	<Route exact path='/' component={Home} />
 		    	<Route exact path='/mis-eventos' component={ListaEventos} />
+		    	<Route exact path='/mis-eventos/nuevo' component={NuevoEvento} />
 		    	<Route exact path='/verificar-ticket' component={VerificarTicket} />
 		    	<AuthRoute exact path='/login' component={Login} />
 		    	<AuthRoute exact path='/register' component={Register} />
