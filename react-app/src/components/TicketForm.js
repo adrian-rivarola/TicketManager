@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks'; 
 
-import { Segment, Divider, Header, Icon, Form, Button } from 'semantic-ui-react';
+import { Form, Message, Divider, Header, Button } from 'semantic-ui-react';
 import { useForm } from '../util/hooks';
 
 import gql from 'graphql-tag';
 
-export default function TicketForm({ event }) {
+function TicketForm({ event }) {
 	const { values, onChange, onSubmit } = useForm(createTicketCallback, { owner: '' });
-	
+	const [message, setMessage] = useState({
+		content: "",
+		positive: true
+	});
+
+	const inpRef = useRef(null);
+
 	const [createTicket, { loading }] = useMutation(CREAR_TICKET, {
 		update(_, {data: { crear_ticket: { owner } }}) {
 			if (owner) {
-				alert(`Ticket enviado a ${owner.username}`);
+				setMessage({
+					content: `Ticket enviado a ${owner.username}`,
+					positive: true,
+				});
+				values.owner = '';
 			}
+
 		},
 		onError(err) {
-			alert(err["graphQLErrors"][0].message);
+			setMessage({
+				content: err["graphQLErrors"][0].message,
+				negative: true
+			});
+			inpRef.current.focus();
 		},
 		variables: {ticketInput: { owner: values.owner, event: event.id }}
 	})
@@ -24,27 +39,35 @@ export default function TicketForm({ event }) {
 	function createTicketCallback() {
 		createTicket();
 	}
+
 	return (
-		<Segment raised padded loading={loading}>
+		<Form onSubmit={onSubmit} loading={loading} className="ticket-form">
 			<Divider horizontal>
-		    <Header as='h4'>
-		      <Icon name='announcement' />
+		    <Header as="h4">
 		      Enviar Ticket
 		    </Header>
 		  </Divider>
-			<Form onSubmit={onSubmit} noValidate className="ticket-form">
-				<Form.Input
-					type="text"
-					label="Nombre de usuario:"
-					name="owner"
-					value={values.name}
-					onChange={onChange}
-				/>
+		  { message.content && 
+        <Message
+          size="small"
+          {...message}
+          className="event-msg"
+          onDismiss={() => setMessage({content: ''})} /> 
+      }
+				<div className="required field">
+          <label>Nombre de usuario:</label>
+          <input 
+            type="text" 
+            name="owner" 
+            value={values.owner}
+            onChange={onChange}
+            ref={inpRef}
+            required />
+        </div>
 				<Button type="submit" color="teal" >
-					Crear
+					Enviar
 				</Button>
-			</Form>
-		</Segment>
+		</Form>
 	);
 }
 
@@ -60,3 +83,5 @@ const CREAR_TICKET = gql`
 		}
 	}
 `;
+
+export default React.memo(TicketForm);
