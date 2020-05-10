@@ -3,7 +3,7 @@ import QRCode from 'qrcode';
 
 import { Icon, Card, Modal, Image } from 'semantic-ui-react';
 
-export default function Ticket({ ticket: { id, event } }) {
+function Ticket({ ticket: { id, event } }) {
   return (
     <Card  raised className="ticket">
       <TicketModal id={id}  name={event.name} />
@@ -15,7 +15,7 @@ export default function Ticket({ ticket: { id, event } }) {
   );
 }
 
-const TicketModal = ({ id, name }) => {
+const TicketModal = React.memo(({ id, name }) => {
   const [open, setOpen] = useState(false);
   
   const closeModal = () => setOpen(false);
@@ -52,4 +52,6 @@ const TicketModal = ({ id, name }) => {
       </Modal.Content>
     </Modal>
   );
-}
+});
+
+export default React.memo(Ticket);

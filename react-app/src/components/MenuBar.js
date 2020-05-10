@@ -5,7 +5,7 @@ import { Menu } from 'semantic-ui-react';
 
 import { AuthContext } from '../context/auth';
 
-export default function MenuBar(props) {
+function MenuBar(props) {
   const [activeItem, setActiveItem] = useState(props.history.location.pathname);
   const { user, logout } = useContext(AuthContext);
   
@@ -77,3 +77,5 @@ export default function MenuBar(props) {
     </Menu>
   )
 }
+
+export default React.memo(MenuBar);

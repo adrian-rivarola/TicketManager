@@ -6,7 +6,7 @@ import { Segment, Card, Divider, Header, Button, Icon } from 'semantic-ui-react'
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-export default function VerificarTicket(props) {
+function VerificarTicket(props) {
 	const [ticketId, setTicketId] = useState('');
 	const [results, setResults] = useState('');
 
@@ -74,3 +74,5 @@ const VALIDAR_TICKET_MUTATION = gql`
 		}
 	}
 `;
+
+export default React.memo(VerificarTicket);
