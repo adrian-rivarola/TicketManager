@@ -10,9 +10,56 @@
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Ticket Manager</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <style type="text/css">
+      .event-form {
+        width: 400px;
+        margin: auto !important;
+      }
+      .ticket-form {
+        width: 400px;
+        margin: auto !important;  
+        padding: 20px;
+      }
+      .user-form {
+        width: 350px;
+        margin: auto !important;  
+        padding: 20px;
+      }
+      .ticket-group {
+        margin: 25px 5px !important;
+      }
+      .qr-code {
+        margin: auto !important;
+      }
+      .new-event {
+        width: 500px !important;
+      }
+      .event-msg {
+        margin: auto !important;
+        width: 80% !important;
+      }
+      @media(min-width: 720px) {
+        #root {
+          width: 75%;
+          margin: auto;
+        }
+        .ticket-scanner {
+          width: 50%;
+          margin: auto !important;
+        }
+      }
+
+      @media(max-width: 480px) {
+        .user-form, .new-event, .event-msg {
+          width: 80% !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root" className="ui container">
+    </div>
   </body>
 </html>
