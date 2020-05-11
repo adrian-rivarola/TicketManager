@@ -10,54 +10,55 @@ import Event from '../components/Event';
 
 function ListaEventos(props) {
   const [events, setEvents] = useState([]);
-	const {
-	    loading,
-	    data
-	  } = useQuery(GET_EVENTS_QUERY);
+  const {
+      loading,
+      data
+    } = useQuery(GET_EVENTS_QUERY);
   
   useEffect(() => {
     if (data && data.ver_eventos && data.ver_eventos.length > 0)
       setEvents(data.ver_eventos);
   }, [data]);
 
-	return (
-		<Segment raised loading={loading}>
-			<Divider horizontal>
-		    <Header as='h4'>
-		      <Icon name='group' />
-		      Mis Eventos
-		    </Header>
-		  </Divider>
+  return (
+    <Segment raised loading={loading}>
+      <Divider horizontal>
+        <Header as='h4'>
+          <Icon name='group' />
+          Mis Eventos
+        </Header>
+      </Divider>
       { events.length > 0 &&
         <Card.Group stackable itemsPerRow={2} className="ticket-group" >
           { events.map((event, idx) => <Event key={idx} event={event} />) }
         </Card.Group>
       }
-      <Divider />
-      <Segment basic textAlign="center">
-        <Button
-          icon="plus"
-          color="teal"
-          content="Nuevo Evento"
-          className="new-event"
-          as={Link}
-          to="mis-eventos/nuevo"
-        />
-      </Segment>
+      { !loading && 
+        <Divider horizontal>
+          <Button
+            icon="plus"
+            color="teal"
+            content="Nuevo Evento"
+            className="new-event"
+            as={Link}
+            to="mis-eventos/nuevo"
+          />
+        </Divider>
+      }
     </Segment>
-	);
+  );
 }
 
 const GET_EVENTS_QUERY = gql`
-	{
-	  ver_eventos {
+  {
+    ver_eventos {
       id
       name
       description
       date
       location
-	  }
-	}
+    }
+  }
 `;
 
 export default React.memo(ListaEventos);

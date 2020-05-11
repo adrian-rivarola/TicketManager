@@ -5,7 +5,7 @@ import { Icon, Card, Modal, Image } from 'semantic-ui-react';
 
 function Ticket({ ticket: { id, event } }) {
   return (
-    <Card  raised className="ticket">
+    <Card  raised className="ticket" color="blue">
       <TicketModal id={id}  name={event.name} />
       <Card.Content description={event.description} />
       <Card.Content extra>

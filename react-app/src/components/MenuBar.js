@@ -37,7 +37,7 @@ function MenuBar(props) {
         ? <React.Fragment>
             <Menu.Item
               name='MisEventos'
-              active={activeItem === '/mis-eventos'}
+              active={activeItem.startsWith('/mis-eventos')}
               as={ Link }
               to='/mis-eventos'
               replace

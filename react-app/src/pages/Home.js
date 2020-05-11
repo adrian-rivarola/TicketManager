@@ -36,7 +36,11 @@ function UserHome(props) {
 export default function Home(props) {
 	const { user } = useContext(AuthContext);
 
-	return user ? <UserHome /> : <h1>Bienvenido</h1>;
+	return user 
+		? <UserHome /> 
+		: <div className="ui padded raised segment">
+        <h2>Bienvenido</h2>
+      </div>;
 }
 
 const GET_TICKETS_QUERY = gql`
