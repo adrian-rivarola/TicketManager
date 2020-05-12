@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/react-hooks';
 import { useForm } from '../util/hooks';
 import gql from 'graphql-tag';
 
+import { GET_EVENTS_QUERY } from './ListaEventos';
+
 import { Form, Segment, Divider, Header, Icon, Button } from 'semantic-ui-react';
 
 function NuevoEvento(props) {
@@ -15,8 +17,13 @@ function NuevoEvento(props) {
 	});
 
 	const [createEvent, { loading }] = useMutation(CREAR_EVENTO, {
-		update(_, {data: { crear_evento }}) {
-			// TODO: modificar caché para agregar evento creado
+		update(proxy, {data: { crear_evento }}) {
+			const data = proxy.readQuery({
+        query: GET_EVENTS_QUERY
+      });
+			data.ver_eventos = [crear_evento, ...data.ver_eventos];
+			proxy.writeQuery({ query: GET_EVENTS_QUERY, data });
+			
 			props.history.push('/mis-eventos');
 		},
 		onError(err) {

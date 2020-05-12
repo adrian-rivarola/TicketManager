@@ -49,7 +49,7 @@ function ListaEventos(props) {
   );
 }
 
-const GET_EVENTS_QUERY = gql`
+export const GET_EVENTS_QUERY = gql`
   {
     ver_eventos {
       id
