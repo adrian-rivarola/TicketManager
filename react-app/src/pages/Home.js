@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -8,10 +8,16 @@ import { Segment, Divider, Header, Icon, Card } from 'semantic-ui-react';
 import Ticket from '../components/Ticket';
 
 function UserHome(props) {
+	const [tickets, setTickets] = useState([]);
 	const {
 	    loading,
 	    data
 	  } = useQuery(GET_TICKETS_QUERY);
+
+	useEffect(() => {
+    if (data && data.ver_tickets && data.ver_tickets.length > 0)
+      setTickets(data.ver_tickets);
+  }, [data]);
 
 	return (
 		<Segment raised loading={loading}>
@@ -21,14 +27,11 @@ function UserHome(props) {
 		      Mis tickets
 		    </Header>
 		  </Divider>
-		  { !loading &&
-			  <Card.Group stackable itemsPerRow={2} className="ticket-group" >
-				  { data && data.ver_tickets.length > 0
-				  	? data.ver_tickets.map((ticket, idx) => <Ticket ticket={ticket} key={idx} />)
-				  	: <Card header="Aún no tienes tickets :(" fluid />
-				  }
-				</Card.Group>
-			}
+		  { tickets.length > 0 &&
+	      <Card.Group stackable itemsPerRow={tickets.length === 1 ? 1:2} className="ticket-group">
+	        { tickets.map((ticket, idx) =>  <Ticket ticket={ticket} key={idx} className={tickets.length === 1 ? 'card500':''}/>) }
+	      </Card.Group>
+      }
     </Segment>
 	);
 }

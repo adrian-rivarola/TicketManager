@@ -4,14 +4,14 @@ import { Modal, Button, Card } from 'semantic-ui-react';
 
 import TicketForm from './TicketForm';
 
-function Event({ event }) {
+function Event({ event, className }) {
   const [open, setOpen] = useState(false);
   
   const closeModal = () => setOpen(false);
   const openModal = (content) => setOpen(true);
 
   return (
-    <Card raised>
+    <Card raised centered className={className} >
       <Card.Content header={event.name}  />
       <Card.Content description={event.description} />
       <Card.Content >

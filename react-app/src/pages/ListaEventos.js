@@ -29,8 +29,8 @@ function ListaEventos(props) {
         </Header>
       </Divider>
       { events.length > 0 &&
-        <Card.Group stackable itemsPerRow={2} className="ticket-group" >
-          { events.map((event, idx) => <Event key={idx} event={event} />) }
+        <Card.Group stackable itemsPerRow={events.length === 1 ? 1:2} className="ticket-group">
+          { events.map((event, idx) => <Event key={idx} event={event} className={events.length === 1 ? 'card500':''}/>) }
         </Card.Group>
       }
       { !loading && 
@@ -38,8 +38,7 @@ function ListaEventos(props) {
           <Button
             icon="plus"
             color="teal"
-            content="Nuevo Evento"
-            className="new-event"
+            content="Nuevo "
             as={Link}
             to="mis-eventos/nuevo"
           />
