@@ -14,6 +14,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
+import './App.css';
+
 const NuevoEvento = React.lazy(() => import('./pages/NuevoEvento')),
       ListaEventos = React.lazy(() => import('./pages/ListaEventos')),
       VerificarTicket = React.lazy(() => import('./pages/VerificarTicket'))

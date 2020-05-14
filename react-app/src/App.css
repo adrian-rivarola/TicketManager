@@ -1,43 +1,48 @@
 .event-form {
-	width: 400px;
-	margin: auto !important;
+  width: 400px;
+  margin: auto !important;
 }
 .ticket-form {
-	width: 400px;
-	margin: auto !important;	
-	padding: 20px;
+  width: 400px;
+  margin: auto !important;  
+  padding: 20px;
 }
 .user-form {
-	width: 350px;
-	margin: auto !important;	
-	padding: 20px;
+  width: 350px;
+  margin: auto !important;
+  padding: 20px;
 }
 .ticket-group {
-	margin: 25px 5px !important;
+  margin: 25px 5px !important;
 }
-.qr-code {
-	margin: auto !important;
-}
-.new-event {
-	width: 500px !important;
+.card500 {
+  width: 500px !important;
 }
 .event-msg {
-	margin: auto !important;
-	width: 80% !important;
+  margin: auto !important;
+  width: 80% !important;
 }
 @media(min-width: 720px) {
-	#root {
-		width: 75%;
-		margin: auto;
-	}
-	.ticket-scanner {
-		width: 50%;
-		margin: auto !important;
-	}
+  #root {
+    width: 75%;
+    margin: auto;
+  }
+  .ticket-scanner {
+    width: 50%;
+    margin: auto !important;
+  }
+  .qr-code {
+    width: 50%;
+    height: 50%;
+  }
 }
 
 @media(max-width: 480px) {
-	.user-form, .new-event, .event-msg {
-		width: 80% !important;
-	}
+  .user-form, .event-msg {
+    width: 80% !important;
+  }
+  .qr-code {
+    width: 90%;
+    height: 90%;
+  }
 }
