@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Modal, Button, Card } from 'semantic-ui-react';
+import { Button, Card } from 'semantic-ui-react';
 
-import TicketForm from './TicketForm';
-
-function Event({ event, className }) {
-  const [open, setOpen] = useState(false);
-  
-  const closeModal = () => setOpen(false);
-  const openModal = (content) => setOpen(true);
+function Event({ event, sendTicket, className }) {
 
   return (
     <Card raised centered className={className} >
@@ -19,15 +13,8 @@ function Event({ event, className }) {
           icon="ticket"
           content="Enviar Ticket"
           color="blue"
-          onClick={() => openModal('p')} />
+          onClick={sendTicket} />
       </Card.Content>
-      <Modal
-        size="tiny"
-        open={open}
-        onClose={closeModal} 
-        closeIcon >
-        <TicketForm event={event} />
-      </Modal>
     </Card>
   );
 }

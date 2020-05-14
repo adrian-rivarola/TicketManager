@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks'; 
 
-import { Form, Message, Divider, Header, Button } from 'semantic-ui-react';
+import { Modal, Form, Message, Divider, Header, Button } from 'semantic-ui-react';
 import { useForm } from '../util/hooks';
 
 import gql from 'graphql-tag';
 
-function TicketForm({ event }) {
+function TicketForm({ open, onClose, event }) {
   const { values, onChange, onSubmit } = useForm(createTicketCallback, { owner: '' });
   const [message, setMessage] = useState({
     content: "",
@@ -32,7 +32,12 @@ function TicketForm({ event }) {
       });
       inpRef.current.focus();
     },
-    variables: {ticketInput: { owner: values.owner, event: event.id }}
+    variables: {
+      ticketInput: {
+        owner: values.owner,
+        event: event && event.id
+      }
+    }
   })
 
   function createTicketCallback() {
@@ -40,34 +45,47 @@ function TicketForm({ event }) {
   }
 
   return (
-    <Form onSubmit={onSubmit} loading={loading} className="ticket-form">
-      <Divider horizontal>
-        <Header as="h4">
-          {`Enviar Ticket para '${event.name}'`}
-        </Header>
-      </Divider>
-      { message.content && 
-        <Message
-          size="small"
-          {...message}
-          className="event-msg"
-          onDismiss={() => setMessage({content: ''})} /> 
+    <Modal
+      size="tiny"
+      open={open}
+      onClose={onClose}
+      closeIcon
+    >
+      
+      { event && 
+        <Form onSubmit={onSubmit} loading={loading} className="ticket-form">
+          <Divider horizontal>
+            <Header as="h4">
+              Enviar Ticket para
+              <br />
+              {`'${event.name}'`}
+            </Header>
+          </Divider>
+          { message.content && 
+            <Message
+              size="small"
+              {...message}
+              className="event-msg"
+              onDismiss={() => setMessage({content: ''})} /> 
+          }
+          <br />
+          <div className="required field">
+            <label>Nombre de usuario:</label>
+            <input 
+              type="text" 
+              name="owner" 
+              value={values.owner}
+              onChange={onChange}
+              ref={inpRef}
+              required />
+          </div>
+          <Button type="submit" color="teal" >
+            Enviar
+          </Button>
+        </Form>
       }
-      <br />
-      <div className="required field">
-        <label>Nombre de usuario:</label>
-        <input 
-          type="text" 
-          name="owner" 
-          value={values.owner}
-          onChange={onChange}
-          ref={inpRef}
-          required />
-      </div>
-      <Button type="submit" color="teal" >
-        Enviar
-      </Button>
-    </Form>
+      
+    </Modal>
   );
 }
 

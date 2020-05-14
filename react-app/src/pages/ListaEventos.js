@@ -7,9 +7,11 @@ import gql from 'graphql-tag';
 import { Segment, Divider, Button, Header, Icon, Card } from 'semantic-ui-react';
 
 import Event from '../components/Event';
+import TicketForm from '../components/TicketForm';
 
 function ListaEventos(props) {
   const [events, setEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null) 
   const {
       loading,
       data
@@ -29,9 +31,23 @@ function ListaEventos(props) {
         </Header>
       </Divider>
       { events.length > 0 &&
-        <Card.Group stackable itemsPerRow={events.length === 1 ? 1:2} className="ticket-group">
-          { events.map((event, idx) => <Event key={idx} event={event} className={events.length === 1 ? 'card500':''}/>) }
-        </Card.Group>
+        <React.Fragment>
+          <Card.Group stackable itemsPerRow={events.length === 1 ? 1:2} className="ticket-group">
+          { events.map((event, idx) => 
+            <Event 
+              key={idx}
+              event={event}
+              sendTicket={() => setSelectedEvent(idx)}
+              className={events.length === 1 ? 'card500':''} />
+            ) 
+          }
+          </Card.Group>
+          <TicketForm 
+            open={selectedEvent != null}
+            onClose={() => setSelectedEvent(null)}
+            event={events[selectedEvent]}
+          />
+        </React.Fragment>
       }
       { !loading && 
         <Divider horizontal>
