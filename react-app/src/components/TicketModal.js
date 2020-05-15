@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { Modal } from 'semantic-ui-react';
-import QRCode from 'qrcode.react';
 
-export default function TicketModal({ open, onClose, ticket }) {
+function TicketModal({ header, open, onClose, children }) {
 
   return (
     <Modal
@@ -12,21 +11,14 @@ export default function TicketModal({ open, onClose, ticket }) {
       onClose={onClose}
       closeIcon
     >
-      { ticket && 
-        <React.Fragment>
-          <Modal.Header>
-            {`Ticket para '${ticket.event.name}'`}
-          </Modal.Header>
-          <Modal.Content>
-            <QRCode // TOOD: Centrar este componente
-              value={ticket.id}
-              size={256}
-              className="qr-code"
-              style={{}}
-            /> 
-          </Modal.Content>
-        </React.Fragment>
-      }
+      <Modal.Header>
+        { header }
+      </Modal.Header>
+      <Modal.Content>
+        { children }
+      </Modal.Content>
     </Modal>
   );
 }
+
+export default React.memo(TicketModal);
