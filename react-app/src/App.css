@@ -31,18 +31,10 @@
     width: 50%;
     margin: auto !important;
   }
-  .qr-code {
-    width: 50%;
-    height: 50%;
-  }
 }
 
 @media(max-width: 480px) {
   .user-form, .event-msg {
     width: 80% !important;
-  }
-  .qr-code {
-    width: 90%;
-    height: 90%;
   }
 }
