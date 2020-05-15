@@ -4,7 +4,7 @@ import { Modal, Card } from 'semantic-ui-react';
 
 function ListaItems({ 
 	items,
-	itemComponent: ItemComponent,
+	itemComponent,
 	modalHeader,
 	modalComponent: ModalComponent,
   sendActiveItemAs,
@@ -19,16 +19,10 @@ function ListaItems({
 
 	return (
 		<React.Fragment>
-      <Card.Group stackable itemsPerRow={items.length === 1 ? 1:2} className="ticket-group">
-	    { items.map((item, idx) => 
-  	    <ItemComponent 
-  	      key={idx}
-  	      item={item}
-  	      activateModal={() => setSelectedItem(item)}
-  	      className={items.length === 1 ? 'card500':''} />
-  	    ) 
-	    }
-      </Card.Group>
+      <ItemGroup
+        items={items}
+        ItemComponent={itemComponent}
+        setSelectedItem={setSelectedItem} />
       <Modal
         open={selectedItem != null}
         onClose={() => setSelectedItem(null)}
@@ -45,5 +39,20 @@ function ListaItems({
     </React.Fragment>
 	);
 }
+
+const ItemGroup = React.memo(({ items, ItemComponent, setSelectedItem }) => 
+  (
+    <Card.Group stackable itemsPerRow={items.length === 1 ? 1:2} className="ticket-group">
+    { items.map((item, idx) => 
+      <ItemComponent 
+        key={idx}
+        item={item}
+        activateModal={() => setSelectedItem(item)}
+        className={items.length === 1 ? 'card500':''} />
+      ) 
+    }
+    </Card.Group>
+  )
+);
 
 export default React.memo(ListaItems);
