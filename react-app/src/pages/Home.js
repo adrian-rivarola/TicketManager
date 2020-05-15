@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -12,16 +12,10 @@ import TicketQR from '../components/TicketQR';
 
 
 function UserHome(props) {
-  const [tickets, setTickets] = useState([]);
   const {
       loading,
       data
     } = useQuery(GET_TICKETS_QUERY);
-
-  useEffect(() => {
-    if (data && data.ver_tickets && data.ver_tickets.length > 0)
-      setTickets(data.ver_tickets);
-  }, [data]);
 
   return (
     <Segment stacked color="teal" loading={loading}>
@@ -31,9 +25,9 @@ function UserHome(props) {
           Mis tickets
         </Header>
       </Divider>
-      { tickets.length > 0 &&
+      { data && data.ver_tickets.length > 0 &&
         <ListaItems 
-          items={tickets}
+          items={data.ver_tickets}
           itemComponent={Ticket}
           modalHeader="Ticket"
           modalComponent={TicketQR}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useQuery } from '@apollo/react-hooks';
@@ -11,17 +11,11 @@ import Event from '../components/Event';
 import TicketForm from '../components/TicketForm';
 
 function ListaEventos(props) {
-  const [events, setEvents] = useState([]);
   const {
       loading,
       data
     } = useQuery(GET_EVENTS_QUERY);
   
-  useEffect(() => {
-    if (data && data.ver_eventos && data.ver_eventos.length > 0)
-      setEvents(data.ver_eventos);
-  }, [data]);
-
   return (
     <Segment raised loading={loading}>
       <Divider horizontal>
@@ -30,9 +24,9 @@ function ListaEventos(props) {
           Mis Eventos
         </Header>
       </Divider>
-      { events.length > 0 &&
+      { data && data.ver_eventos.length > 0 &&
         <ListaItems 
-          items={events}
+          items={data.ver_eventos}
           itemComponent={Event}
           modalHeader="Enviar Ticket"
           modalComponent={TicketForm}
