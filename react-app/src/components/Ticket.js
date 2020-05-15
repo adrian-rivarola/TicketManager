@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Icon, Card } from 'semantic-ui-react';
 
-function Ticket({ showQR, className, ticket: { id, event } }) {
+function Ticket({ activateModal, className, item: { id, event } }) {
   return (
     <Card
       raised
       centered
       className={className}
       color="blue"
-      onClick={showQR}
+      onClick={activateModal}
     >
       <Card.Content header={event.name} />
       <Card.Content extra>

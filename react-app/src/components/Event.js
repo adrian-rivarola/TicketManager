@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, Card } from 'semantic-ui-react';
 
-function Event({ event, sendTicket, className }) {
+function Event({ item: event, activateModal, className }) {
 
   return (
     <Card raised centered className={className} >
@@ -13,7 +13,7 @@ function Event({ event, sendTicket, className }) {
           icon="ticket"
           content="Enviar Ticket"
           color="blue"
-          onClick={sendTicket} />
+          onClick={activateModal} />
       </Card.Content>
     </Card>
   );

@@ -2,16 +2,17 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { Segment, Modal, Divider, Header, Icon, Card } from 'semantic-ui-react';
+import { Segment, Divider, Header, Icon } from 'semantic-ui-react';
 
 import { AuthContext } from '../context/auth';
 
+import ListaItems from '../components/ListaItems';
 import Ticket from '../components/Ticket';
-import TicketModal from '../components/TicketModal';
+import TicketQR from '../components/TicketQR';
+
 
 function UserHome(props) {
   const [tickets, setTickets] = useState([]);
-  const [selectedTicket, setSelectedTicket] = useState(null);
   const {
       loading,
       data
@@ -31,23 +32,13 @@ function UserHome(props) {
         </Header>
       </Divider>
       { tickets.length > 0 &&
-          <Card.Group stackable itemsPerRow={tickets.length === 1 ? 1:2} className="ticket-group">
-          { tickets.map((ticket, idx) =>  
-              <Ticket 
-                key={idx}
-                ticket={ticket}
-                showQR={() => setSelectedTicket(idx)}
-                className={tickets.length === 1 ? 'card500':''}/>
-            )
-          }
-          </Card.Group>
-      }
-      { tickets.length > 0 &&
-        <TicketModal
-           open={selectedTicket != null}
-           onClose={() => setSelectedTicket(null)}
-           ticket={tickets[selectedTicket]}
-         />
+        <ListaItems 
+          items={tickets}
+          itemComponent={Ticket}
+          modalHeader="Ticket"
+          modalComponent={TicketQR}
+          sendActiveItemAs='ticket'
+        />
        }
     </Segment>
   );

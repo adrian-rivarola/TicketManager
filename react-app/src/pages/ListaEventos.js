@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { Segment, Divider, Button, Header, Icon, Card } from 'semantic-ui-react';
+import { Segment, Divider, Button, Header, Icon } from 'semantic-ui-react';
 
+import ListaItems from '../components/ListaItems';
 import Event from '../components/Event';
 import TicketForm from '../components/TicketForm';
 
 function ListaEventos(props) {
   const [events, setEvents] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState(null) 
   const {
       loading,
       data
@@ -31,23 +31,13 @@ function ListaEventos(props) {
         </Header>
       </Divider>
       { events.length > 0 &&
-        <React.Fragment>
-          <Card.Group stackable itemsPerRow={events.length === 1 ? 1:2} className="ticket-group">
-          { events.map((event, idx) => 
-            <Event 
-              key={idx}
-              event={event}
-              sendTicket={() => setSelectedEvent(idx)}
-              className={events.length === 1 ? 'card500':''} />
-            ) 
-          }
-          </Card.Group>
-          <TicketForm 
-            open={selectedEvent != null}
-            onClose={() => setSelectedEvent(null)}
-            event={events[selectedEvent]}
-          />
-        </React.Fragment>
+        <ListaItems 
+          items={events}
+          itemComponent={Event}
+          modalHeader="Enviar Ticket"
+          modalComponent={TicketForm}
+          sendActiveItemAs='event'
+        />
       }
       { !loading && 
         <Divider horizontal>
