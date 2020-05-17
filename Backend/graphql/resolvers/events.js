@@ -24,7 +24,12 @@ async function ver_eventos(_, __, context) {
 	const { id } = validar_usuario(context);
 
 	const eventos = await Event.find({organizer: id}).populate('organizer', 'username');
-	// TODO: Agregar filtros según la fecha del evento
+	if (eventos.length === 0) {
+		let user = await User.findById(id);
+		if (!user)
+			throw new Error('Usuario no encontrado');
+	}
+
 	return eventos || [];
 }
 
