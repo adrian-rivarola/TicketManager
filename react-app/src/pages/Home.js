@@ -34,14 +34,18 @@ function UserHome({ logout }) {
           Mis tickets
         </Header>
       </Divider>
-      { data && data.ver_tickets.length > 0 &&
-        <ListaItems 
-          items={data.ver_tickets}
-          itemComponent={Ticket}
-          modalHeader="Ticket"
-          modalComponent={TicketQR}
-          sendActiveItemAs='ticket'
-        />
+      { data &&
+        data.ver_tickets.length > 0
+        ? <ListaItems 
+            items={data.ver_tickets}
+            itemComponent={Ticket}
+            modalHeader="Ticket"
+            modalComponent={TicketQR}
+            sendActiveItemAs='ticket'
+          />
+        : <Segment padded textAlign="center" className="no-items">
+            <p>Aquí aparecerán los tickets que te envíen</p>
+          </Segment>
        }
     </Segment>
   );

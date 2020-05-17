@@ -28,14 +28,18 @@ function ListaEventos(props) {
           Mis Eventos
         </Header>
       </Divider>
-      { data && data.ver_eventos.length > 0 &&
-        <ListaItems 
-          items={data.ver_eventos}
-          itemComponent={Event}
-          modalHeader="Enviar Ticket"
-          modalComponent={TicketForm}
-          sendActiveItemAs='event'
-        />
+      { data &&
+        data.ver_eventos.length > 0
+        ? <ListaItems 
+            items={data.ver_eventos}
+            itemComponent={Event}
+            modalHeader="Enviar Ticket"
+            modalComponent={TicketForm}
+            sendActiveItemAs='event'
+          />
+        : <Segment padded textAlign="center" className="no-items">
+            <p>Aún no has creado ningún evento</p>
+          </Segment>
       }
       { !loading && 
         <Divider horizontal>

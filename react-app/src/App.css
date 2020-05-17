@@ -22,6 +22,10 @@
   margin: auto !important;
   width: 80% !important;
 }
+.no-items {
+  width: 60%;
+  margin: 20px auto 30px !important;
+}
 @media(min-width: 720px) {
   #root {
     width: 75%;
@@ -34,7 +38,7 @@
 }
 
 @media(max-width: 480px) {
-  .user-form, .event-msg {
+  .user-form, .event-msg, .no-items {
     width: 80% !important;
   }
 }
