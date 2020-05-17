@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 
 import { AuthProvider } from './context/auth';
-import AuthRoute from './util/AuthRoute';
+import { PublicRoute, PrivateRoute } from './util/AuthRoute';
 
 import MenuBar from './components/MenuBar';
 
@@ -28,16 +28,16 @@ export default function App() {
         <Route exact path='/' component={Home} />
 
         <Suspense fallback={ <Loader titulo="Mis Eventos" icon="group" /> }>
-          <Route exact path='/mis-eventos' component={ListaEventos} />
-          <Route exact path='/mis-eventos/nuevo' component={NuevoEvento} />
+          <PrivateRoute exact path='/mis-eventos' component={ListaEventos} />
+          <PrivateRoute exact path='/mis-eventos/nuevo' component={NuevoEvento} />
         </Suspense>
 
         <Suspense fallback={ <Loader titulo="VerificarTicket" icon="qrcode" /> }>
-          <Route exact path='/verificar-ticket' component={VerificarTicket} />
+          <PrivateRoute exact path='/verificar-ticket' component={VerificarTicket} />
         </Suspense>
 
-        <AuthRoute exact path='/login' component={Login} />
-        <AuthRoute exact path='/register' component={Register} />
+        <PublicRoute exact path='/login' component={Login} restricted />
+        <PublicRoute exact path='/register' component={Register} restricted />
 
       </Router>
      </AuthProvider>
