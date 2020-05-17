@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -12,10 +12,14 @@ import TicketForm from '../components/TicketForm';
 
 function ListaEventos(props) {
   const {
-      loading,
-      data
-    } = useQuery(GET_EVENTS_QUERY);
-  
+    loading,
+    data,
+    error
+  } = useQuery(GET_EVENTS_QUERY);
+
+  if (error)
+    return <Redirect to="/" />
+
   return (
     <Segment raised loading={loading}>
       <Divider horizontal>

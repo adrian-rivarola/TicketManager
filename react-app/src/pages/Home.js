@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -11,11 +13,18 @@ import Ticket from '../components/Ticket';
 import TicketQR from '../components/TicketQR';
 
 
-function UserHome(props) {
+function UserHome({ logout }) {
   const {
-      loading,
-      data
-    } = useQuery(GET_TICKETS_QUERY);
+    loading,
+    data,
+    error
+  } = useQuery(GET_TICKETS_QUERY);
+
+  if (error){
+    logout();
+    alert('Algo salio mal, vuelve a iniciar sesión');
+    return <Redirect to="/login" />
+  }
 
   return (
     <Segment stacked color="teal" loading={loading}>
@@ -39,10 +48,10 @@ function UserHome(props) {
 }
 
 export default function Home(props) {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return user 
-    ? <UserHome /> 
+    ? <UserHome logout={logout} /> 
     : <div className="ui padded raised segment">
         <h2>Bienvenido</h2>
       </div>;
