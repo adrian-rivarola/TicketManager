@@ -4,11 +4,11 @@ import {
   Route
 } from "react-router-dom";
 
-import Loader from '../components/Loader';
+import Header from '../components/Header';
 
-const ListaEventos = React.lazy(() => import('../components/ListaEventos' /* webpackChunkName: "events" */)),
-		  VerificarTicket = React.lazy(() => import('../components/VerificarTicket')),
-			EventForm = React.lazy(() => import('../components/EventForm'))
+const ListaEventos = React.lazy(() => import('../components/Eventos/ListaEventos' /* webpackChunkName: "events" */)),
+		  VerificarTicket = React.lazy(() => import('../components/Tickets/VerificarTicket')),
+			EventForm = React.lazy(() => import('../components/Eventos/EventForm'))
 
 const Eventos = props => {
 
@@ -16,19 +16,19 @@ const Eventos = props => {
 		<Switch>
 
 			<Route exact path='/eventos' >
-				<Suspense fallback={<Loader titulo='Mis Eventos' icono="group" />}>
+				<Suspense fallback={<Header titulo='Mis Eventos' icono="group" loading />}>
 					<ListaEventos />
 				</Suspense>
 			</Route>
 			
 			<Route path='/eventos/nuevo' >
-				<Suspense fallback={<Loader titulo='Crear Evento' icono="group" />} >
+				<Suspense fallback={<Header titulo='Crear Evento' icono="group" loading />} >
 					<EventForm />
 				</Suspense>
 			</Route>
 
 			<Route path='/eventos/verificar' >
-				<Suspense fallback={<Loader titulo='Verificar Ticket' icono="qrcode" />} >
+				<Suspense fallback={<Header titulo='Verificar Ticket' icono="qrcode" loading />} >
 					<VerificarTicket />
 				</Suspense>
 			</Route>

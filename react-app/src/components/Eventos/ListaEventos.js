@@ -5,10 +5,10 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { Segment, Divider, Button } from 'semantic-ui-react';
-import Header from './Header';
+import Header from '../Header';
 
-import ListaItems from './ListaItems';
-import TicketForm from './TicketForm';
+import TicketForm from '../Tickets/TicketForm';
+import ListaItems from '../ListaItems';
 import Event from './Event';
 
 function ListaEventos(props) {

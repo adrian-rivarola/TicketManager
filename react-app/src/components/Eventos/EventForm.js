@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks'; 
 import { GET_EVENTS_QUERY } from './ListaEventos';
-import { useForm } from '../util/hooks';
+import { useForm } from '../../util/hooks';
 
 import { Form, Segment, Button } from 'semantic-ui-react';
-import Header from './Header'; 
+import Header from '../Header';
 
 function NuevoEvento(props) {
 	const { values, onChange, onSubmit } = useForm(createEventCallback, {

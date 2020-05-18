@@ -5,9 +5,9 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { Segment } from 'semantic-ui-react';
-import Header from './Header';
+import Header from '../Header';
 
-import ListaItems from './ListaItems';
+import ListaItems from '../ListaItems';
 import TicketQR from './TicketQR';
 import Ticket from './Ticket';
 

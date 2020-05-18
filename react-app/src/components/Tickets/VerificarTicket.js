@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
 
 import { Segment, Card, Button } from 'semantic-ui-react';
-import Header from './Header';
+import Header from '../Header';
 
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
