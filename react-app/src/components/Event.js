@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Card } from 'semantic-ui-react';
 
@@ -14,6 +15,12 @@ function Event({ item: event, activateModal, className }) {
           content="Enviar Ticket"
           color="blue"
           onClick={activateModal} />
+        <Button
+          icon="qrcode"
+          content="Escanear Tickets"
+          color="blue"
+          as={Link}
+          to="/eventos/verificar" />
       </Card.Content>
     </Card>
   );

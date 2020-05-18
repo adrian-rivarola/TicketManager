@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/react-hooks'; 
-import { useForm } from '../util/hooks';
 import gql from 'graphql-tag';
 
-import { GET_EVENTS_QUERY } from './ListaEventos';
-
 import { Form, Segment, Divider, Header, Icon, Button } from 'semantic-ui-react';
+
+import { GET_EVENTS_QUERY } from './ListaEventos';
+import { useForm } from '../util/hooks';
 
 function NuevoEvento(props) {
 	const { values, onChange, onSubmit } = useForm(createEventCallback, {
@@ -75,6 +76,9 @@ function NuevoEvento(props) {
 				/>
 				<Button type="submit" color="teal" >
 					Crear
+				</Button>
+				<Button as={Link} to="/eventos" replace>
+					Volver
 				</Button>
 			</Form>
 		</Segment>

@@ -6,9 +6,9 @@ import gql from 'graphql-tag';
 
 import { Segment, Divider, Button, Header, Icon } from 'semantic-ui-react';
 
-import ListaItems from '../components/ListaItems';
-import Event from '../components/Event';
-import TicketForm from '../components/TicketForm';
+import ListaItems from './ListaItems';
+import Event from './Event';
+import TicketForm from './TicketForm';
 
 function ListaEventos(props) {
   const {
@@ -28,7 +28,7 @@ function ListaEventos(props) {
           Mis Eventos
         </Header>
       </Divider>
-      { data &&
+      { data && (
         data.ver_eventos.length > 0
         ? <ListaItems 
             items={data.ver_eventos}
@@ -40,7 +40,7 @@ function ListaEventos(props) {
         : <Segment padded textAlign="center" className="no-items">
             <p>Aún no has creado ningún evento</p>
           </Segment>
-      }
+      )}
       { !loading && 
         <Divider horizontal>
           <Button
@@ -48,7 +48,8 @@ function ListaEventos(props) {
             color="teal"
             content="Nuevo "
             as={Link}
-            to="mis-eventos/nuevo"
+            to="/eventos/nuevo"
+            replace
           />
         </Divider>
       }
