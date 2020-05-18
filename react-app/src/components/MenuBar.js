@@ -9,7 +9,7 @@ function MenuBar(props) {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <Menu color='teal'>
+    <Menu size="large">
       <Menu.Item
         name={(user && user.username) || 'Inicio'}
         as={NavLink}

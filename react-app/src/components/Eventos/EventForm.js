@@ -38,7 +38,7 @@ function NuevoEvento(props) {
 	}
 
 	return (
-		<Segment raised padded>
+		<Segment raised padded color="teal">
 			<Header titulo="Crear evento" icono="group" />
 			<Form onSubmit={onSubmit} loading={loading} className="event-form">
 				<Form.Input

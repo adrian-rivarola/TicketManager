@@ -22,7 +22,7 @@ function ListaEventos(props) {
     return <Redirect to="/" />
 
   return (
-    <Segment raised loading={loading}>
+    <Segment raised color="teal" loading={loading}>
       <Header titulo='Mis Eventos' icono='group' />
       { data && (
         data.ver_eventos.length > 0

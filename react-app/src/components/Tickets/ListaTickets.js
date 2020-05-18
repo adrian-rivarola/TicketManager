@@ -26,7 +26,7 @@ function ListaTickets({ logout }) {
   }
 
   return (
-    <Segment stacked color="teal" loading={loading}>
+    <Segment stacked color="blue" loading={loading}>
       <Header titulo='Mis tickets' icono='ticket' />
       { data && (
         data.ver_tickets.length > 0
