@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route
@@ -10,15 +10,12 @@ import { PublicRoute, PrivateRoute } from './util/AuthRoute';
 import MenuBar from './components/MenuBar';
 
 import Home from './pages/Home';
+import Eventos from './pages/Eventos';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
 
 import './App.css';
-
-const NuevoEvento = React.lazy(() => import('./pages/NuevoEvento')),
-      ListaEventos = React.lazy(() => import('./pages/ListaEventos')),
-      VerificarTicket = React.lazy(() => import('./pages/VerificarTicket'))
 
 export default function App() {
   return (
@@ -27,14 +24,7 @@ export default function App() {
         <Route path="/" component={MenuBar} />
         <Route exact path='/' component={Home} />
 
-        <Suspense fallback={ <Loader titulo="Mis Eventos" icon="group" /> }>
-          <PrivateRoute exact path='/mis-eventos' component={ListaEventos} />
-          <PrivateRoute exact path='/mis-eventos/nuevo' component={NuevoEvento} />
-        </Suspense>
-
-        <Suspense fallback={ <Loader titulo="VerificarTicket" icon="qrcode" /> }>
-          <PrivateRoute exact path='/verificar-ticket' component={VerificarTicket} />
-        </Suspense>
+        <PrivateRoute path='/eventos' component={Eventos} />
 
         <PublicRoute exact path='/login' component={Login} restricted />
         <PublicRoute exact path='/register' component={Register} restricted />
@@ -43,14 +33,3 @@ export default function App() {
      </AuthProvider>
   );
 }
-
-const Loader = props => (
-  <div className="ui loading raised segment">
-    <div className="ui horizontal divider">
-      <h4 className="ui header">
-        <i aria-hidden="true" className={`${props.icon} icon`}></i>
-        {props.titulo}
-      </h4>
-    </div>
-  </div>
-);
