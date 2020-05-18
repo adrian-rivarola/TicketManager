@@ -19,8 +19,8 @@
   width: 500px !important;
 }
 .event-msg {
-  margin: auto !important;
-  width: 80% !important;
+  margin: -20px auto 15px !important;
+  width: 60% !important;
 }
 .no-items {
   width: 60%;
