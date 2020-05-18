@@ -4,11 +4,12 @@ import { Link, Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { Segment, Divider, Button, Header, Icon } from 'semantic-ui-react';
+import { Segment, Divider, Button } from 'semantic-ui-react';
+import Header from './Header';
 
 import ListaItems from './ListaItems';
-import Event from './Event';
 import TicketForm from './TicketForm';
+import Event from './Event';
 
 function ListaEventos(props) {
   const {
@@ -22,12 +23,7 @@ function ListaEventos(props) {
 
   return (
     <Segment raised loading={loading}>
-      <Divider horizontal>
-        <Header as='h4'>
-          <Icon name='group' />
-          Mis Eventos
-        </Header>
-      </Divider>
+      <Header titulo='Mis Eventos' icono='group' />
       { data && (
         data.ver_eventos.length > 0
         ? <ListaItems 

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { useMutation } from '@apollo/react-hooks'; 
 import gql from 'graphql-tag';
-
-import { Form, Segment, Divider, Header, Icon, Button } from 'semantic-ui-react';
-
+import { useMutation } from '@apollo/react-hooks'; 
 import { GET_EVENTS_QUERY } from './ListaEventos';
 import { useForm } from '../util/hooks';
+
+import { Form, Segment, Button } from 'semantic-ui-react';
+import Header from './Header'; 
 
 function NuevoEvento(props) {
 	const { values, onChange, onSubmit } = useForm(createEventCallback, {
@@ -39,12 +39,7 @@ function NuevoEvento(props) {
 
 	return (
 		<Segment raised padded>
-			<Divider horizontal>
-		    <Header as='h4'>
-		      <Icon name='group' />
-		      Crear evento
-		    </Header>
-		  </Divider>
+			<Header titulo="Crear evento" icono="group" />
 			<Form onSubmit={onSubmit} loading={loading} className="event-form">
 				<Form.Input
 					type="text"

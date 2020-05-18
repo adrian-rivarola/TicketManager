@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
 
-import { Segment, Card, Divider, Header, Button, Icon } from 'semantic-ui-react';
+import { Segment, Card, Button } from 'semantic-ui-react';
+import Header from './Header';
 
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -28,12 +29,7 @@ function VerificarTicket(props) {
 
 	return (
 		<Segment raised loading={loading}>
-			<Divider horizontal>
-		    <Header as='h4'>
-		      <Icon name='qrcode' />
-		      Verificar Ticket
-		    </Header>
-		  </Divider>
+		  <Header titulo="Verificar Ticket" icono='qrcode' />
 		  <div className="ticket-scanner">
 		  	{ !results
 		  		? <QrReader

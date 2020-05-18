@@ -1,7 +1,8 @@
 import React, { useContext, Suspense } from 'react';
 
-import { Segment, Divider, Header, Icon } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 import Loader from '../components/Loader';
+import Header from '../components/Header';
 
 import { AuthContext } from '../context/auth';
 
@@ -11,7 +12,7 @@ export default function Home(props) {
   const { user, logout } = useContext(AuthContext);
 
   return user
-    ? <Suspense fallback={<Loader titulo="Mis Tickets" icon="ticket" />}>
+    ? <Suspense fallback={<Loader titulo="Mis Tickets" icono="ticket" />}>
         <ListaTickets logout={logout} />
       </Suspense>
     : HomePage
@@ -19,11 +20,7 @@ export default function Home(props) {
 
 const HomePage = (
   <Segment raised padded>
-    <Divider horizontal>
-      <Header as="h4">
-        <Icon name="home" />
-        Inicio
-      </Header>
-    </Divider>
+    <Header titulo="Inicio" icono="home" />
+        
   </Segment>
 );

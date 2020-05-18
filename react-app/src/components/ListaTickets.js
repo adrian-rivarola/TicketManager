@@ -4,7 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { Segment, Divider, Header, Icon } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
+import Header from './Header';
 
 import ListaItems from './ListaItems';
 import TicketQR from './TicketQR';
@@ -26,12 +27,7 @@ function ListaTickets({ logout }) {
 
   return (
     <Segment stacked color="teal" loading={loading}>
-      <Divider horizontal>
-        <Header as='h4'>
-          <Icon name='ticket' />
-          Mis tickets
-        </Header>
-      </Divider>
+      <Header titulo='Mis tickets' icono='ticket' />
       { data && (
         data.ver_tickets.length > 0
         ? <ListaItems 
