@@ -7,8 +7,8 @@ import {
 import Header from '../components/Header';
 
 const ListaEventos = React.lazy(() => import('../components/Eventos/ListaEventos' /* webpackChunkName: "events" */)),
-		  VerificarTicket = React.lazy(() => import('../components/Tickets/VerificarTicket')),
-			EventForm = React.lazy(() => import('../components/Eventos/EventForm'))
+			EventForm = React.lazy(() => import('../components/Eventos/EventForm')),
+		  LectorQR = React.lazy(() => import('../components/LectorQR' /* webpackChunkName: "scanner" */))
 
 const Eventos = props => {
 
@@ -29,7 +29,7 @@ const Eventos = props => {
 
 			<Route path='/eventos/verificar' >
 				<Suspense fallback={<Header titulo='Verificar Ticket' icono="qrcode" loading />} >
-					<VerificarTicket />
+					<LectorQR />
 				</Suspense>
 			</Route>
 		</Switch>

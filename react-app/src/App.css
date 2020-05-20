@@ -27,7 +27,7 @@
   margin: 20px auto 30px !important;
 }
 .scan-result {
-  margin: 25px auto 20px !important;
+  margin: 10px auto 20px !important;
 }
 @media(min-width: 720px) {
   #root {
@@ -35,7 +35,7 @@
     margin: auto;
   }
   .ticket-scanner {
-    width: 48%;
+    width: 45%;
     margin: auto !important;
   }
 }
