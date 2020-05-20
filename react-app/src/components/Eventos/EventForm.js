@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks'; 
@@ -25,7 +25,7 @@ function NuevoEvento(props) {
 			data.ver_eventos = [crear_evento, ...data.ver_eventos];
 			proxy.writeQuery({ query: GET_EVENTS_QUERY, data });
 			
-			props.history.push('/mis-eventos');
+			props.history.push('/eventos');
 		},
 		onError(err) {
 			alert(JSON.stringify(err));
@@ -94,4 +94,4 @@ const CREAR_EVENTO = gql`
 	}
 `;
 
-export default React.memo(NuevoEvento);
+export default React.memo(withRouter(NuevoEvento));
