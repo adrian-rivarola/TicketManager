@@ -1,19 +1,20 @@
 import React from 'react';
+import { FormattedMessage } from "react-intl";
 
 const Header = ({titulo, icono, loading}) => {
 	
-	const TITUlO = (
+	const TITULO = (
 	  <div className="ui horizontal divider">
 	    <h4 className="ui header">
 	      <i aria-hidden="true" className={`${icono} icon`}></i>
-	      {titulo}
+	      <FormattedMessage id={titulo} />
 	    </h4>
 	  </div>
 	);
 
 	return loading 
-		? <div className="ui loading raised segment">{ TITUlO }</div> 
-		: TITUlO
+		? <div className="ui loading raised segment">{ TITULO }</div> 
+		: TITULO
 }
 
 export default Header;

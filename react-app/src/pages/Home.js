@@ -11,7 +11,7 @@ export default function Home(props) {
   const { user, logout } = useContext(AuthContext);
 
   return user
-    ? <Suspense fallback={<Header titulo="Mis Tickets" icono="ticket" loading />}>
+    ? <Suspense fallback={<Header titulo="tickets.title" icono="ticket" loading />}>
         <ListaTickets logout={logout} />
       </Suspense>
     : HomePage

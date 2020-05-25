@@ -9,89 +9,108 @@ import { useForm } from '../../util/hooks';
 import { Form, Segment, Button } from 'semantic-ui-react';
 import Header from '../Header';
 
-function NuevoEvento(props) {
-	const { values, onChange, onSubmit } = useForm(createEventCallback, {
-		name: '',
-		description: '',
-		location: '',
-		date: ''
-	});
+import { FormattedMessage } from 'react-intl';
 
-	const [createEvent, { loading }] = useMutation(CREAR_EVENTO, {
-		update(proxy, {data: { crear_evento }}) {
-			const data = proxy.readQuery({
+function NuevoEvento(props) {
+  const { values, onChange, onSubmit } = useForm(createEventCallback, {
+    name: '',
+    description: '',
+    location: '',
+    date: ''
+  });
+
+  const [createEvent, { loading }] = useMutation(CREAR_EVENTO, {
+    update(proxy, {data: { crear_evento }}) {
+      const data = proxy.readQuery({
         query: GET_EVENTS_QUERY
       });
-			data.ver_eventos = [crear_evento, ...data.ver_eventos];
-			proxy.writeQuery({ query: GET_EVENTS_QUERY, data });
-			
-			props.history.push('/eventos');
-		},
-		onError(err) {
-			alert(JSON.stringify(err));
-		},
-		variables: {eventInput: { ...values }}
-	})
+      data.ver_eventos = [crear_evento, ...data.ver_eventos];
+      proxy.writeQuery({ query: GET_EVENTS_QUERY, data });
+      
+      props.history.push('/eventos');
+    },
+    onError(err) {
+      alert(JSON.stringify(err));
+    },
+    variables: {eventInput: values }
+  })
 
-	function createEventCallback() {
-		createEvent();
-	}
+  function createEventCallback() {
+    createEvent();
+  }
 
-	return (
-		<Segment raised padded color="teal">
-			<Header titulo="Crear evento" icono="group" />
-			<Form onSubmit={onSubmit} loading={loading} className="event-form">
-				<Form.Input
-					type="text"
-					label="Nombre:"
-					name="name"
-					value={ values.name }
-					onChange={onChange}
-				/>
-				<Form.Input
-					type="text"
-					label="Descripción:"
-					name="description"
-					value={ values.description }
-					onChange={onChange}
-				/>
-				<Form.Input
-					type="date"
-					label="Fecha:"
-					name="date"
-					value={ values.date }
-					onChange={onChange}
-				/>
-				<Form.Input
-					type="text"
-					label="Lugar:"
-					name="location"
-					value={ values.location }
-					onChange={onChange}
-				/>
-				<Button type="submit" color="teal" >
-					Crear
-				</Button>
-				<Button as={Link} to="/eventos" replace>
-					Volver
-				</Button>
-			</Form>
-		</Segment>
-	);
+  return (
+    <Segment raised padded color="teal">
+      <Header titulo="events.new" icono="group" />
+      <Form onSubmit={onSubmit} loading={loading} className="event-form">
+        <div className="required field">
+          <label>
+            <FormattedMessage id="new-event.name" />
+          </label>
+          <input
+            type="text"
+            name="name" 
+            value={values.name}
+            onChange={onChange}
+            required />
+        </div>
+        <div className="required field">
+          <label>
+            <FormattedMessage id="new-event.description" />
+          </label>
+          <textarea
+            type="text" 
+            name="description" 
+            value={values.description}
+            onChange={onChange}
+            rows={2}
+            required />
+        </div>
+        <div className="required field">
+          <label>
+            <FormattedMessage id="new-event.date" />
+          </label>
+          <input
+            type="date"
+            name="date"
+            value={values.date}
+            onChange={onChange}
+            required />
+        </div>
+        <div className="required field">
+          <label>
+            <FormattedMessage id="new-event.location" />
+          </label>
+          <input
+            type="text"
+            name="location"
+            value={values.location}
+            onChange={onChange}
+            required />
+        </div>
+        <Button type="submit" color="teal" >
+          <FormattedMessage id='new-event.create' />
+        </Button>
+        <Button as={Link} to="/eventos" replace>
+          <FormattedMessage id='go-back' />
+        </Button>
+      </Form>
+    </Segment>
+  );
 }
 
 const CREAR_EVENTO = gql`
-	mutation crear_evento( $eventInput: EventInput! ) 
-	{
-		crear_evento(eventInput: $eventInput)
-		{
-			id
-	    name
-	    description
-	    location
-	    date
-		}
-	}
+  mutation crear_evento( $eventInput: EventInput! ) 
+  {
+    crear_evento(eventInput: $eventInput)
+    {
+      id
+      name
+      description
+      location
+      date
+    }
+  }
 `;
 
 export default React.memo(withRouter(NuevoEvento));

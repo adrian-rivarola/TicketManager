@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import QrReader from 'react-qr-reader';
+import { FormattedMessage } from 'react-intl';
 
 import { useMutation } from '@apollo/react-hooks';
 import ticket_mutation from './validar_ticket_mutation';
@@ -34,7 +35,7 @@ const Lector = props => {
 
   return (
     <Segment raised color="blue" loading={loading} >
-      <Header titulo="Verificar Ticket" icono='qrcode' />
+      <Header titulo="scanner.title" icono='qrcode' />
       <Segment basic textAlign='center' >
         { scanResult === null
         ? <div className="ticket-scanner">
@@ -44,7 +45,7 @@ const Lector = props => {
               onError={error => setScanResult({error})}
             />
             <Button
-              content='Volver'
+              content={ <FormattedMessage id='go-back' />}
               icon='arrow left'
               as={Link}
               to='/eventos'

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 import { Button, Card } from 'semantic-ui-react';
 
 function Event({ item: event, activateModal, className }) {
@@ -11,13 +12,13 @@ function Event({ item: event, activateModal, className }) {
       <Card.Content >
         <Button
           icon="ticket"
-          content="Enviar Ticket"
-          color="blue" 
+          content={ <FormattedMessage id='ticket.send' /> }
+          color="blue"
           basic
           onClick={activateModal} />
         <Button
           icon="qrcode"
-          content="Escanear Tickets"
+          content={ <FormattedMessage id='ticket.scan' /> }
           color="blue"
           basic
           as={Link}

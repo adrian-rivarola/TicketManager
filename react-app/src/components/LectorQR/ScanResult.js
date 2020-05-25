@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import { Card, Button } from 'semantic-ui-react';
 
@@ -13,19 +14,21 @@ const ErrorCard = React.memo(({ error, clearResults }) => (
             <Button
               basic
               color="red"
-              content="Volver"
+              content={ <FormattedMessage id='go-back' /> }
               icon="left arrow"
               onClick={clearResults}
             />
           </Card.Content>
         </React.Fragment>
       : <React.Fragment>
-          <Card.Content description="No se puede acceder a la cámara" />
+          <Card.Content description>
+            <FormattedMessage id='scanner.camera-error' />
+          </Card.Content>
           <Card.Content extra>
           <Button
             basic
             color="red"
-            content="Volver a Eventos"
+            content={ <FormattedMessage id='go-back' /> }
             icon="left arrow"
             as={Link}
             to="/eventos"
@@ -39,18 +42,19 @@ const ErrorCard = React.memo(({ error, clearResults }) => (
 
 const SuccessCard = React.memo(({ data: ticket, clearResults }) => (
   <Card color='green' className='scan-result card500'>
-    <Card.Content header="Ticket válido" />
+    <Card.Content 
+      header={ <b><FormattedMessage id='ticket.valid' /></b> } 
+    />
     <Card.Content>
-      <p>
-        Nombre del particpante: <br />
-        <b>{ticket.owner.username}</b>
-      </p>
+      <FormattedMessage id='username' />: 
+      <br />
+      <b>{ticket.owner.username}</b>
     </Card.Content>
     <Card.Content extra>
       <Button
         basic
         color="green"
-        content="Volver"
+        content={ <FormattedMessage id='go-back' /> }
         icon="left arrow"
         onClick={clearResults}
       />

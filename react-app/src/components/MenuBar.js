@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { NavLink } from 'react-router-dom';
 import { Menu, Dropdown } from 'semantic-ui-react';
@@ -30,41 +31,50 @@ function MenuBar({ setLocale }) {
   return (
     <Menu size="large">
       <Menu.Item
-        name={(user && user.username) || 'Inicio'}
         as={NavLink}
         exact
         to='/'
-        replace />
+        replace 
+      >
+        { user
+          ? user.username
+          : <FormattedMessage id='home' />
+        }
+      </Menu.Item>
       { user
         ? <React.Fragment>
             <Menu.Item
-              name='MisEventos'
               as={NavLink}
               to='/eventos'
-            />
+            >
+              <FormattedMessage id='events.title' />
+            </Menu.Item>
             <Menu.Menu position='right'>
-              { languageDropdown }
+              {languageDropdown}
               <Menu.Item
-                name='cerrar sesion'
                 onClick={logout}
-              />
+              >
+                <FormattedMessage id='logout' />
+              </Menu.Item>
             </Menu.Menu>
           </React.Fragment>
 
         : <Menu.Menu position='right'>
             {languageDropdown}
             <Menu.Item
-              name='Acceder'
               as={NavLink}
               to='/login'
               replace
-            />
+            >
+              <FormattedMessage id='login' />
+            </Menu.Item>
             <Menu.Item
-              name='Registrarse'
               as={NavLink}
               to='/register'
               replace
-            />
+            >
+              <FormattedMessage id='register' />
+            </Menu.Item>
           </Menu.Menu>
       }
     </Menu>

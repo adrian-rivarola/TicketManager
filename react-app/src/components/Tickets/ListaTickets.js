@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -10,7 +11,6 @@ import Header from '../Header';
 import ListaItems from '../ListaItems';
 import TicketQR from './TicketQR';
 import Ticket from './Ticket';
-
 
 function ListaTickets({ logout }) {
   const {
@@ -27,7 +27,7 @@ function ListaTickets({ logout }) {
 
   return (
     <Segment stacked color="blue" loading={loading}>
-      <Header titulo='Mis tickets' icono='ticket' />
+      <Header titulo='tickets.title' icono='ticket' />
       { data && (
         data.ver_tickets.length > 0
         ? <ListaItems 
@@ -38,7 +38,9 @@ function ListaTickets({ logout }) {
             sendActiveItemAs='ticket'
           />
         : <Segment padded textAlign="center" className="no-items">
-            <p>Aquí aparecerán los tickets que te envíen</p>
+            <p>
+              <FormattedMessage id='tickets.empty' />
+            </p>
           </Segment>
       )}
     </Segment>

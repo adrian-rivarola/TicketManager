@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { Segment, Divider, Button } from 'semantic-ui-react';
 import Header from '../Header';
-
 import TicketForm from '../Tickets/TicketForm';
 import ListaItems from '../ListaItems';
 import Event from './Event';
@@ -23,18 +23,20 @@ function ListaEventos(props) {
 
   return (
     <Segment raised color="teal" loading={loading}>
-      <Header titulo='Mis Eventos' icono='group' />
+      <Header titulo='events.title' icono='group' />
       { data && (
         data.ver_eventos.length > 0
         ? <ListaItems 
             items={data.ver_eventos}
             itemComponent={Event}
-            modalHeader="Enviar Ticket"
+            modalHeader={ <FormattedMessage id='ticket.send' /> }
             modalComponent={TicketForm}
             sendActiveItemAs='event'
           />
         : <Segment padded textAlign="center" className="no-items">
-            <p>Aún no has creado ningún evento</p>
+            <p>
+              <FormattedMessage id='events.empty' />
+            </p>
           </Segment>
       )}
       { !loading && 
@@ -42,7 +44,7 @@ function ListaEventos(props) {
           <Button
             icon="plus"
             color="teal"
-            content="Nuevo "
+            content={ <FormattedMessage id='events.new' /> }
             as={Link}
             to="/eventos/nuevo"
             replace

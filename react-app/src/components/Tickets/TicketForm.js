@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks'; 
+import { FormattedMessage } from 'react-intl';
 
 import { Form, Message, Button } from 'semantic-ui-react';
 import { useForm } from '../../util/hooks';
@@ -54,7 +55,9 @@ function TicketForm({ event }) {
           onDismiss={() => setMessage({content: ''})} /> 
       }
       <div className="required field">
-        <label>Nombre de usuario:</label>
+        <label>
+          <FormattedMessage id='username' />
+        </label>
         <input 
           type="text" 
           name="owner" 
@@ -64,7 +67,7 @@ function TicketForm({ event }) {
           required />
       </div>
       <Button type="submit" color="teal" >
-        Enviar
+        <FormattedMessage id='send' />
       </Button>
     </Form>
   );

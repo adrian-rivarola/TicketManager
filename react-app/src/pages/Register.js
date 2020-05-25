@@ -8,6 +8,8 @@ import gql from 'graphql-tag';
 import { AuthContext } from '../context/auth';
 import ListaErrores from '../components/ListaErrores';
 
+import { FormattedMessage } from 'react-intl';
+
 export default function Register(props) {
   const context = useContext(AuthContext);
 
@@ -41,12 +43,14 @@ export default function Register(props) {
   return (
     <div className="ui segment raised padded">
       <h2 className="ui horizontal divider header">
-        Registrarse
+        <FormattedMessage id='register' />
       </h2>
       { errors.length > 0 && <ListaErrores errors={errors} /> }
       <Form onSubmit={onSubmit} loading={loading} className="user-form" >
         <div className="required field">
-          <label>Nombre de usuario:</label>
+          <label>
+            <FormattedMessage id='username' />
+          </label>
           <input 
             type="text" 
             name="username" 
@@ -56,7 +60,9 @@ export default function Register(props) {
             required />
         </div>
         <div className="required field">
-          <label>Contraseña:</label>
+          <label>
+            <FormattedMessage id='password' />
+          </label>
           <input 
             type="password" 
             name="password" 
@@ -65,7 +71,9 @@ export default function Register(props) {
             required />
         </div>
         <div className="required field">
-          <label>Confirmar contraseña:</label>
+          <label>
+            <FormattedMessage id='confirmPass' />
+          </label>
           <input  
             type="password"
             name="confirmPassword"
@@ -74,8 +82,8 @@ export default function Register(props) {
             required
           />
         </div>
-        <Button type="submit" color="teal" >
-          Registrarse
+        <Button type="submit" color="teal" fluid >
+          <FormattedMessage id='register' />
         </Button>
       </Form>
     </div>

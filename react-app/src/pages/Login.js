@@ -8,6 +8,8 @@ import gql from 'graphql-tag';
 import { AuthContext } from '../context/auth';
 import ListaErrores from '../components/ListaErrores';
 
+import { FormattedMessage } from 'react-intl';
+
 export default function Login(props) {
   const context = useContext(AuthContext);
   
@@ -39,12 +41,14 @@ export default function Login(props) {
   return (
     <div className="ui segment raised padded">
       <h2 className="ui horizontal divider header">
-        Acceder
+        <FormattedMessage id="login" />
       </h2>
       { errors.length > 0 && <ListaErrores errors={errors} /> }
       <Form onSubmit={onSubmit} loading={loading} className="user-form" >
         <div className="required field">
-          <label>Nombre de usuario:</label>
+          <label>
+            <FormattedMessage id='username' />
+          </label>
           <input 
             type="text" 
             name="username" 
@@ -54,16 +58,18 @@ export default function Login(props) {
             required />
         </div>
         <div className="required field">
-          <label>Contraseña:</label>
+          <label>
+            <FormattedMessage id='password' />
+          </label>
           <input 
             type="password"
             name="password"
-            value={ values.password }
+            value={values.password}
             onChange={onChange}
             required />
         </div>
-        <Button type="submit" color="teal" >
-          Log in
+        <Button type="submit" color="teal" fluid >
+          <FormattedMessage id='login' />
         </Button>
       </Form>
     </div>

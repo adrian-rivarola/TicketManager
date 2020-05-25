@@ -16,19 +16,19 @@ const Eventos = props => {
 		<Switch>
 
 			<Route exact path='/eventos' >
-				<Suspense fallback={<Header titulo='Mis Eventos' icono="group" loading />}>
+				<Suspense fallback={<Header titulo='events.title' icono="group" loading />}>
 					<ListaEventos />
 				</Suspense>
 			</Route>
 			
 			<Route path='/eventos/nuevo' >
-				<Suspense fallback={<Header titulo='Crear Evento' icono="group" loading />} >
+				<Suspense fallback={<Header titulo='events.new' icono="group" loading />} >
 					<EventForm />
 				</Suspense>
 			</Route>
 
 			<Route path='/eventos/verificar' >
-				<Suspense fallback={<Header titulo='Verificar Ticket' icono="qrcode" loading />} >
+				<Suspense fallback={<Header titulo='scanner.title' icono="qrcode" loading />} >
 					<LectorQR />
 				</Suspense>
 			</Route>
