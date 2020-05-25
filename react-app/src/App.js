@@ -22,13 +22,15 @@ import Register from './pages/Register';
 import './App.css';
 
 export default function App() {
-  const [locale] = useState('en');
+  const [locale, setLocale] = useState('en');
 
   return (
     <AuthProvider>
       <IntlProvider locale={locale} messages={messages[locale]}>
         <Router>
-          <Route path="/" component={MenuBar} />
+          <Route path="/">
+            <MenuBar setLocale={setLocale} />
+          </Route>
           <Route exact path='/' component={Home} />
 
           <PrivateRoute path='/eventos' component={Eventos} />

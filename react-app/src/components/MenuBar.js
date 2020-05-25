@@ -1,12 +1,31 @@
 import React, { useContext } from 'react';
 
 import { NavLink } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Dropdown } from 'semantic-ui-react';
 
 import { AuthContext } from '../context/auth';
 
-function MenuBar(props) {
+function MenuBar({ setLocale }) {
   const { user, logout } = useContext(AuthContext);
+  
+  const languageDropdown = (
+    <Dropdown item icon='globe'>
+      <Dropdown.Menu>
+        <Dropdown.Item 
+          content='Español'
+          onClick={() => setLocale('es')}
+        />
+        <Dropdown.Item 
+          content='English'
+          onClick={() => setLocale('en')}
+        />
+        <Dropdown.Item 
+          content='Deutsch'
+          onClick={() => setLocale('de')}
+        />
+      </Dropdown.Menu>
+    </Dropdown>
+  );
 
   return (
     <Menu size="large">
@@ -24,6 +43,7 @@ function MenuBar(props) {
               to='/eventos'
             />
             <Menu.Menu position='right'>
+              { languageDropdown }
               <Menu.Item
                 name='cerrar sesion'
                 onClick={logout}
@@ -32,6 +52,7 @@ function MenuBar(props) {
           </React.Fragment>
 
         : <Menu.Menu position='right'>
+            {languageDropdown}
             <Menu.Item
               name='Acceder'
               as={NavLink}
