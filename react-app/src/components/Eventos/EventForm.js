@@ -40,7 +40,7 @@ function NuevoEvento(props) {
   }
 
   return (
-    <Segment raised padded color="teal">
+    <Segment raised padded color="teal" className="fh">
       <Header titulo="events.new" icono="group" />
       <Form onSubmit={onSubmit} loading={loading} className="event-form">
         <div className="required field">
@@ -88,12 +88,14 @@ function NuevoEvento(props) {
             onChange={onChange}
             required />
         </div>
-        <Button type="submit" color="teal" >
-          <FormattedMessage id='new-event.create' />
-        </Button>
-        <Button as={Link} to="/eventos" replace>
-          <FormattedMessage id='go-back' />
-        </Button>
+        <Segment basic textAlign="center">
+          <Button type="submit" color="teal" >
+            <FormattedMessage id='new-event.create' />
+          </Button>
+          <Button as={Link} to="/eventos" replace>
+            <FormattedMessage id='go-back' />
+          </Button>
+        </Segment>
       </Form>
     </Segment>
   );

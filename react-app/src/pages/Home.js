@@ -18,8 +18,8 @@ export default function Home(props) {
 }
 
 const HomePage = (
-  <Segment raised padded>
-    <Header titulo="Inicio" icono="home" />
+  <Segment raised padded className='fh'>
+    <Header titulo="home" icono="home" />
         
   </Segment>
 );

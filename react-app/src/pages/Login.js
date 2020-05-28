@@ -39,7 +39,7 @@ export default function Login(props) {
   }
 
   return (
-    <div className="ui segment raised padded">
+    <div className="ui segment raised padded fh">
       <h2 className="ui horizontal divider header">
         <FormattedMessage id="login" />
       </h2>

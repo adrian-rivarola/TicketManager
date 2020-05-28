@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { Segment, Divider, Button } from 'semantic-ui-react';
+import { Segment, Button } from 'semantic-ui-react';
 import Header from '../Header';
 import TicketForm from '../Tickets/TicketForm';
 import ListaItems from '../ListaItems';
@@ -22,7 +22,7 @@ function ListaEventos(props) {
     return <Redirect to="/" />
 
   return (
-    <Segment raised color="teal" loading={loading}>
+    <Segment color="teal" loading={loading} className='fh'>
       <Header titulo='events.title' icono='group' />
       { data && (
         data.ver_eventos.length > 0
@@ -40,7 +40,7 @@ function ListaEventos(props) {
           </Segment>
       )}
       { !loading && 
-        <Divider horizontal>
+        <Segment textAlign="center" basic>
           <Button
             icon="plus"
             color="teal"
@@ -49,7 +49,7 @@ function ListaEventos(props) {
             to="/eventos/nuevo"
             replace
           />
-        </Divider>
+        </Segment>
       }
     </Segment>
   );

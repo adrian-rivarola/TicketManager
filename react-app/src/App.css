@@ -44,4 +44,7 @@
   .user-form, .event-msg, .no-items {
     width: 80% !important;
   }
+  .fh {
+    min-height: 92vh;
+  }
 }

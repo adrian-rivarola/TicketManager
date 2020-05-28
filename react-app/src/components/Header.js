@@ -13,7 +13,7 @@ const Header = ({titulo, icono, loading}) => {
 	);
 
 	return loading 
-		? <div className="ui loading raised segment">{ TITULO }</div> 
+		? <div className="ui loading raised segment fh">{ TITULO }</div> 
 		: TITULO
 }
 
