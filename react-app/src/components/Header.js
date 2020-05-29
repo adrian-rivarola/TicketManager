@@ -7,7 +7,9 @@ const Header = ({titulo, icono, loading}) => {
 	  <div className="ui horizontal divider">
 	    <h4 className="ui header">
 	      <i aria-hidden="true" className={`${icono} icon`}></i>
-	      <FormattedMessage id={titulo} />
+	      <FormattedMessage 
+	      	id={titulo}
+	      	defaultMessage={titulo} />
 	    </h4>
 	  </div>
 	);
