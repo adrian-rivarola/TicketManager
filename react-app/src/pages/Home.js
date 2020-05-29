@@ -1,6 +1,6 @@
 import React, { useContext, Suspense } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import { Segment } from 'semantic-ui-react';
 import Header from '../components/Header';
 
 import { AuthContext } from '../context/auth';
@@ -14,12 +14,5 @@ export default function Home(props) {
     ? <Suspense fallback={<Header titulo="tickets.title" icono="ticket" loading />}>
         <ListaTickets logout={logout} />
       </Suspense>
-    : HomePage
+    : <Redirect to='/login' replace />
 }
-
-const HomePage = (
-  <Segment raised padded className='fh'>
-    <Header titulo="home" icono="home" />
-        
-  </Segment>
-);

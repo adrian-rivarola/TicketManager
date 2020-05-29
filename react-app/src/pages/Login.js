@@ -44,7 +44,7 @@ export default function Login(props) {
         <FormattedMessage id="login" />
       </h2>
       { errors.length > 0 && <ListaErrores errors={errors} /> }
-      <Form onSubmit={onSubmit} loading={loading} className="user-form" >
+      <Form onSubmit={onSubmit} loading={loading} className="user-form" noValidate>
         <div className="required field">
           <label>
             <FormattedMessage id='username' />
@@ -71,6 +71,18 @@ export default function Login(props) {
         <Button type="submit" color="teal" fluid >
           <FormattedMessage id='login' />
         </Button>
+        <br />
+        <Button 
+          type="submit"
+          color="green"
+          content={ <FormattedMessage id='login-tester' defaultMessage='Login as Tester' /> }
+          onClick={ev => {
+            values.username = 'Tester';
+            values.password = '123';
+          }}
+          fluid
+          basic
+        />
       </Form>
     </div>
   );
