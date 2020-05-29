@@ -12,7 +12,7 @@ async function ver_tickets(_, __, context) {
 		populate: { path: 'event' }
 	});
 	if (!user) {
-		throw new Error('Usuario no encontrado');
+		throw new Error('User not found');
 	}
 	
 	return user.tickets;
@@ -23,15 +23,15 @@ async function crear_ticket(_, { ticketInput }, context) {
 	
 	const event = await Event.findById(ticketInput.event);
 	if (!event) {
-		throw new Error('Evento no encontrado');
+		throw new Error('Event not found');
 	}
 	if (event.organizer.toString() !== id) {
-		throw new Error('Operación no permitida');
+		throw new Error('Operation not allowed');
 	}
 
 	const owner = await User.findOne({ username: ticketInput.owner });
 	if (!owner) {
-		throw new Error('Usuario no encontrado');
+		throw new Error('User not found');
 	}
 
 	const ticket = new Ticket({ event, owner });
@@ -48,11 +48,11 @@ async function validar_ticket(_, { id: ticket_id }, context) {
 
 	const ticket = await Ticket.findById(ticket_id).populate('event').populate('owner');
 	if (!ticket || !ticket.isValid) {
-		throw new Error('Ticket inválido');
+		throw new Error('Invalid Ticket');
 	}
 
 	if (ticket.event.organizer.toString() !== id) {
-		throw new Error('Operación no permitida');
+		throw new Error('This ticket is for another Event!');
 	}
 
 	return ticket;

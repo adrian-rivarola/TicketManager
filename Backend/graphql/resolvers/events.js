@@ -8,7 +8,7 @@ async function crear_evento(_, { eventInput }, context) {
 
 	const organizer = await User.findById(id);
 	if (!organizer) {
-		throw new Error('Operación no permitida');
+		throw new Error('Operation not allowed');
 	}
 
 	const event = new Event({
@@ -27,7 +27,7 @@ async function ver_eventos(_, __, context) {
 	if (eventos.length === 0) {
 		let user = await User.findById(id);
 		if (!user)
-			throw new Error('Usuario no encontrado');
+			throw new Error('User not found');
 	}
 
 	return eventos || [];

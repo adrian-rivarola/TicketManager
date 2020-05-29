@@ -16,8 +16,8 @@ async function register(_, { registerInput }) {
   
   const user = await User.findOne({ username });
   if (user) {
-    errors.username = 'Nombre de usuario ya existe';
-    throw new UserInputError('Nombre de usuario ya existe!', { errors });
+    errors.username = 'Username already taken';
+    throw new UserInputError('Username already taken!', { errors });
   }
 
   registerInput.password = await bcrypt.hash(password, 10);
@@ -37,14 +37,14 @@ async function login(_, { username, password }) {
 
   const user = await User.findOne({ username });
   if (!user) {
-    errors.general = 'Usuario no encontrado';
-    throw new UserInputError('Usuario no encontrado!', { errors });
+    errors.general = 'User not found';
+    throw new UserInputError('User not found!', { errors });
   }
   
   const correctPassword = await bcrypt.compare(password, user.password);
   if (!correctPassword) {
-    errors.general = 'Contraseña incorrecta';
-    throw new UserInputError('Contraseña incorrecta!', { errors });
+    errors.general = 'Wrong password';
+    throw new UserInputError('Wrong password!', { errors });
   }
 
   return user;

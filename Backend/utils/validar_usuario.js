@@ -6,18 +6,17 @@ module.exports = context => {
 	const authHeader = context.req.headers.authorization;
 
 	if (!authHeader) {
-		throw new AuthenticationError('Autorización requerida');
+		throw new AuthenticationError('Authorization required');
 	}
 	const token = authHeader.split('Bearer ')[1];
 	if (!token) {
-		throw new AuthenticationError('Token inválido');
+		throw new AuthenticationError('Invalid Token');
 	}
 	try {
 		const user = jwt.verify(token, process.env.SECRET_KEY);
 		return user;
 	} catch(err) {
-		console.error(err);
-		throw new AuthenticationError('Token inválido');
+		throw new AuthenticationError('Invalid Token');
 	}
 
 }
