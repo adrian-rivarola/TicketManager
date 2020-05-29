@@ -25,7 +25,11 @@ const Lector = props => {
 
   const handleScan = (data) => {
     if (!data) return;
-    
+    if (!data.match(/^[0-9a-fA-F]{24}$/)) {
+      alert('That\'s not a valid code!');
+      return;
+    }
+
     validar({
       variables: {
         id: data
