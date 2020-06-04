@@ -13,12 +13,14 @@ function Event({ item: event, activateModal, className }) {
         <Button
           icon="ticket"
           content={ <FormattedMessage id='ticket.send' /> }
+          disabled={!navigator.onLine}
           color="blue"
           basic
           onClick={activateModal} />
         <Button
           icon="qrcode"
           content={ <FormattedMessage id='ticket.scan' /> }
+          disabled={!navigator.onLine}
           color="blue"
           basic
           as={Link}

@@ -77,6 +77,7 @@ export default function Register(props) {
           <input  
             type="password"
             name="confirmPassword"
+            disabled={!navigator.onLine}
             value={values.confirmPassword}
             onChange={onChange}
             required

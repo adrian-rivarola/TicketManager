@@ -49,17 +49,20 @@ function ListaEventos(props) {
             </p>
           </Segment>
       )}
-      { !loading && 
-        <Segment textAlign="center" basic>
-          <Button
-            icon="plus"
-            color="teal"
-            content={ <FormattedMessage id='events.new' /> }
-            as={Link}
-            to="/eventos/nuevo"
-            replace
-          />
-        </Segment>
+      { !loading || !navigator.onLine 
+        ? <Segment textAlign="center" basic>
+            <Button
+              icon="plus"
+              color="teal"
+              content={ <FormattedMessage id='events.new' /> }
+              disabled={!navigator.onLine}
+              title="asd"
+              as={Link}
+              to="/eventos/nuevo"
+              replace
+            />
+          </Segment>
+        : <div className="ui active centered inline loader"></div>
       }
     </Segment>
   );

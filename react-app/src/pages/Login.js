@@ -68,14 +68,18 @@ export default function Login(props) {
             onChange={onChange}
             required />
         </div>
-        <Button type="submit" color="teal" fluid >
-          <FormattedMessage id='login' />
-        </Button>
+        <Button
+          type="submit"
+          color="teal"
+          content={ <FormattedMessage id='login' /> }
+          disabled={!navigator.onLine}
+          fluid />
         <br />
         <Button 
           type="submit"
           color="green"
           content={ <FormattedMessage id='login-tester' defaultMessage='Login as Tester' /> }
+          disabled={!navigator.onLine}
           onClick={ev => {
             values.username = 'Tester';
             values.password = '123';
