@@ -19,8 +19,6 @@ import Eventos from './pages/Eventos';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
-import './App.css';
-
 export default function App() {
   const [locale, setLocale] = useState('en');
 

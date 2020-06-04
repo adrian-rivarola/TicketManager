@@ -4,7 +4,7 @@
 }
 .ticket-form {
   width: 400px;
-  margin: auto !important;  
+  margin: auto !important;
   padding: 20px;
 }
 .user-form {
@@ -12,8 +12,8 @@
   margin: auto !important;
   padding: 20px;
 }
-.ticket-group {
-  margin: 25px 5px !important;
+.item-group {
+  margin: 25px 5px 5px !important;
 }
 .card500 {
   width: 500px !important;
