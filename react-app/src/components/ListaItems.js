@@ -23,6 +23,7 @@ function ListaItems({
         items={items}
         ItemComponent={itemComponent}
         setSelectedItem={setSelectedItem} />
+    { selectedItem &&
       <Modal
         open={selectedItem != null}
         onClose={() => setSelectedItem(null)}
@@ -36,19 +37,20 @@ function ListaItems({
         { selectedItem && <ModalComponent {...modalProps} />}
         </Modal.Content>
       </Modal>
+    }
     </React.Fragment>
 	);
 }
 
 const ItemGroup = React.memo(({ items, ItemComponent, setSelectedItem }) => 
   (
-    <Card.Group stackable itemsPerRow={items.length === 1 ? 1:2} className="ticket-group">
+    <Card.Group stackable itemsPerRow={items.length === 1 ? 1:2} className="item-group">
     { items.map((item, idx) => 
       <ItemComponent 
         key={idx}
         item={item}
         activateModal={() => setSelectedItem(item)}
-        className={items.length === 1 ? 'card500':''} />
+        className={items.length === 1 ? 'card500' : ''} />
       ) 
     }
     </Card.Group>

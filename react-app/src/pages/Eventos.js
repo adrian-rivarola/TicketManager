@@ -7,8 +7,8 @@ import {
 import Header from '../components/Header';
 
 const ListaEventos = React.lazy(() => import('../components/Eventos/ListaEventos' /* webpackChunkName: "events" */)),
-			EventForm = React.lazy(() => import('../components/Eventos/EventForm')),
-		  LectorQR = React.lazy(() => import('../components/LectorQR' /* webpackChunkName: "scanner" */))
+			EventForm = React.lazy(() => import('../components/Eventos/EventForm' /* webpackChunkName: "events" */)),
+		  LectorQR = React.lazy(() => import('../components/LectorQR' /* webpackChunkName: "events" */))
 
 const Eventos = props => {
 

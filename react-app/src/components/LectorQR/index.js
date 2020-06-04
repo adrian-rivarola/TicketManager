@@ -48,7 +48,9 @@ const Lector = props => {
               onScan={handleScan}
               onError={error => setScanResult({error})}
             />
+            <br />
             <Button
+              fluid
               content={ <FormattedMessage id='go-back' />}
               icon='arrow left'
               as={Link}
