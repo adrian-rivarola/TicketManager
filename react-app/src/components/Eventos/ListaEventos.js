@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
@@ -7,27 +7,37 @@ import gql from 'graphql-tag';
 
 import { Segment, Button } from 'semantic-ui-react';
 import Header from '../Header';
+
+import { useLocalStorage } from '../../util/hooks';
+
 import TicketForm from '../Tickets/TicketForm';
 import ListaItems from '../ListaItems';
 import Event from './Event';
 
 function ListaEventos(props) {
+  const [events, setEvents] = useLocalStorage('events');
   const {
     loading,
     data,
     error
   } = useQuery(GET_EVENTS_QUERY);
 
-  if (error)
+  useEffect(() => {
+    if (data !== undefined) {
+      setEvents(data['ver_eventos']);
+    }
+  }, [data]);
+
+  if (error && navigator.onLine)
     return <Redirect to="/" />
 
   return (
-    <Segment color="teal" loading={loading} className='fh'>
+    <Segment color="teal" className='fh'>
       <Header titulo='events.title' icono='group' />
-      { data && (
-        data.ver_eventos.length > 0
+      { events && (
+        events.length > 0
         ? <ListaItems 
-            items={data.ver_eventos}
+            items={events}
             itemComponent={Event}
             modalHeader={ <FormattedMessage id='ticket.send' /> }
             modalComponent={TicketForm}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
@@ -8,30 +8,39 @@ import gql from 'graphql-tag';
 import { Segment } from 'semantic-ui-react';
 import Header from '../Header';
 
+import { useLocalStorage } from '../../util/hooks';
+
 import ListaItems from '../ListaItems';
 import TicketQR from './TicketQR';
 import Ticket from './Ticket';
 
 function ListaTickets({ logout }) {
+  const [tickets, setTickets] = useLocalStorage('tickets');
   const {
     loading,
     data,
     error
   } = useQuery(GET_TICKETS_QUERY);
 
-  if (error){
+  useEffect(() => {
+    if (data !== undefined) {
+      setTickets(data['ver_tickets']);
+    }
+  }, [data]);
+
+  if (error && navigator.onLine) {
     logout();
     alert('Algo salio mal, vuelve a iniciar sesión');
     return <Redirect to="/login" />
   }
 
   return (
-    <Segment color="blue" loading={loading} className='fh'>
+    <Segment color="blue" className='fh'>
       <Header titulo='tickets.title' icono='ticket' />
-      { data && (
-        data.ver_tickets.length > 0
+      { tickets && (
+        tickets.length > 0
         ? <ListaItems 
-            items={data.ver_tickets}
+            items={tickets}
             itemComponent={Ticket}
             modalHeader="Ticket"
             modalComponent={TicketQR}
@@ -43,6 +52,9 @@ function ListaTickets({ logout }) {
             </p>
           </Segment>
       )}
+      { loading && navigator.onLine &&
+        <div className="ui active centered inline loader"></div>
+      }
     </Segment>
   );
 }
