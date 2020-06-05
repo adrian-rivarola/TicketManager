@@ -52,7 +52,7 @@ function ListaTickets({ logout }) {
             </p>
           </Segment>
       )}
-      { loading && navigator.onLine &&
+      { loading && navigator.onLine && !error &&
         <div className="ui active centered inline loader"></div>
       }
     </Segment>

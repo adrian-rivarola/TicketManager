@@ -13,13 +13,16 @@ import ScanResult from './ScanResult'
 
 const Lector = props => {
   const [scanResult, setScanResult] = useState(null);
+  const [isScanning, setIsScanning] = useState(false);
 
-  const [validar,  {loading}] = useMutation(ticket_mutation, {
+  const [validar] = useMutation(ticket_mutation, {
     update(_, { data: { validar_ticket }}) {
       setScanResult({data: validar_ticket});
+      setIsScanning(false);
     },
     onError(error) {
       setScanResult({error});
+      setIsScanning(false);
     }
   });
 
@@ -30,6 +33,7 @@ const Lector = props => {
       return;
     }
 
+    setIsScanning(true)
     validar({
       variables: {
         id: data
@@ -38,11 +42,13 @@ const Lector = props => {
   }
 
   return (
-    <Segment raised color="blue" loading={loading} className="fh">
+    <Segment raised color="blue" className="fh">
       <Header titulo="scanner.title" icono='qrcode' />
       <Segment basic textAlign='center' >
-        { scanResult === null
-        ? <div className="ticket-scanner">
+      { isScanning
+        ? <div className="ui active centered inline loader"></div>
+        : scanResult === null
+          ? <div className="ticket-scanner">
             <QrReader
               delay={300}
               onScan={handleScan}
@@ -61,7 +67,7 @@ const Lector = props => {
             clearResults={() => setScanResult(null)}
             {...scanResult}
           />
-        }
+      }
       </Segment>
     </Segment>
   );
