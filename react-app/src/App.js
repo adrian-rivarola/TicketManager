@@ -12,6 +12,7 @@ import { PublicRoute, PrivateRoute } from './util/AuthRoute';
 import messages from './messages';
 
 import MenuBar from './components/MenuBar';
+import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import Eventos from './pages/Eventos';
@@ -37,6 +38,7 @@ export default function App() {
           <PublicRoute exact path='/register' component={Register} restricted />
 
         </Router>
+        <Footer />
       </IntlProvider>
     </AuthProvider>
   );
