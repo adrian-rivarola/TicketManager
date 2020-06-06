@@ -42,7 +42,7 @@ const Lector = props => {
   }
 
   return (
-    <Segment raised color="blue" className="fh">
+    <Segment attached color="blue" className="fh">
       <Header titulo="scanner.title" icono='qrcode' />
       <Segment basic textAlign='center' >
       { isScanning

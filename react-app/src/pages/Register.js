@@ -41,7 +41,7 @@ export default function Register(props) {
   }
 
   return (
-    <div className="ui segment raised padded fh">
+    <div className="ui teal segment raised padded attached fh">
       <h2 className="ui horizontal divider header">
         <FormattedMessage id='register' />
       </h2>

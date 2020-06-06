@@ -35,7 +35,7 @@ function ListaTickets({ logout }) {
   }
 
   return (
-    <Segment color="blue" className='fh'>
+    <Segment color="blue" className='fh' attached>
       <Header titulo='tickets.title' icono='ticket' />
       { tickets && (
         tickets.length > 0

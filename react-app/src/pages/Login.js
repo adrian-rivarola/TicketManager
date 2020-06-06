@@ -39,9 +39,9 @@ export default function Login(props) {
   }
 
   return (
-    <div className="ui segment raised padded fh">
+    <div className="ui teal segment raised padded attached fh">
       <h2 className="ui horizontal divider header">
-        <FormattedMessage id="login" />
+        <FormattedMessage id="login" icon="user" />
       </h2>
       { errors.length > 0 && <ListaErrores errors={errors} /> }
       <Form onSubmit={onSubmit} loading={loading} className="user-form" noValidate>

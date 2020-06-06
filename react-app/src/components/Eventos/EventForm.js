@@ -40,9 +40,13 @@ function NuevoEvento(props) {
   }
 
   return (
-    <Segment raised padded color="teal" className="fh">
+    <Segment raised padded attached color="teal" className="fh">
       <Header titulo="events.new" icono="group" />
-      <Form onSubmit={onSubmit} loading={loading} className="event-form">
+      <Form 
+        loading={loading}
+        onSubmit={onSubmit}
+        className="event-form"
+      >
         <div className="required field">
           <label>
             <FormattedMessage id="new-event.name" />

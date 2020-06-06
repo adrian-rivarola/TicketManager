@@ -32,7 +32,7 @@ function ListaEventos(props) {
     return <Redirect to="/" />
 
   return (
-    <Segment color="teal" className='fh'>
+    <Segment color="teal" className='fh' attached>
       <Header titulo='events.title' icono='group' />
       { events && (
         events.length > 0

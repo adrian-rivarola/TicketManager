@@ -29,7 +29,7 @@ function MenuBar({ setLocale }) {
   );
 
   return (
-    <Menu>
+    <Menu attached='top'>
       <Menu.Item
         as={NavLink}
         exact
