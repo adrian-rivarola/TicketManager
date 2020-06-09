@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
 
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks'; 
@@ -26,8 +25,8 @@ function NuevoEvento(props) {
       });
       data.ver_eventos = [crear_evento, ...data.ver_eventos];
       proxy.writeQuery({ query: GET_EVENTS_QUERY, data });
-      
-      props.history.push('/eventos');
+
+      props.history.goBack();
     },
     onError(err) {
       alert(JSON.stringify(err));
@@ -36,6 +35,7 @@ function NuevoEvento(props) {
   })
 
   function createEventCallback() {
+    console.log('form-send')
     createEvent();
   }
 
@@ -93,12 +93,16 @@ function NuevoEvento(props) {
             required />
         </div>
         <Segment basic textAlign="center">
-          <Button type="submit" color="teal" >
-            <FormattedMessage id='new-event.create' />
-          </Button>
-          <Button as={Link} to="/eventos" replace>
-            <FormattedMessage id='go-back' />
-          </Button>
+          <Button
+            type="submit"
+            color="teal"
+            content={<FormattedMessage id='new-event.create'/>}
+          />
+          <Button
+            type="button"
+            onClick={props.history.goBack}
+            content={<FormattedMessage id='go-back' />}
+          />
         </Segment>
       </Form>
     </Segment>
@@ -119,4 +123,4 @@ const CREAR_EVENTO = gql`
   }
 `;
 
-export default React.memo(withRouter(NuevoEvento));
+export default React.memo(NuevoEvento);

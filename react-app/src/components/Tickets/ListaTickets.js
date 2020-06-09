@@ -26,7 +26,7 @@ function ListaTickets({ logout }) {
     if (data !== undefined) {
       setTickets(data['ver_tickets']);
     }
-  }, [data]);
+  }, [data, setTickets]);
 
   if (error && navigator.onLine) {
     logout();

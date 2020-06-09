@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Icon, Card } from 'semantic-ui-react';
 
@@ -7,9 +8,11 @@ function Ticket({ activateModal, className, item: { id, event } }) {
     <Card
       raised
       centered
-      className={className}
       color="blue"
+      className={className}
       onClick={activateModal}
+      as={Link}
+      to="#ticket"
     >
       <Card.Content header={event.name} />
       <Card.Content extra>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import QrReader from 'react-qr-reader';
 import { FormattedMessage } from 'react-intl';
 
@@ -59,8 +59,7 @@ const Lector = props => {
               fluid
               content={ <FormattedMessage id='go-back' />}
               icon='arrow left'
-              as={Link}
-              to='/eventos'
+              onClick={props.history.goBack}
             />
           </div>
         : <ScanResult 

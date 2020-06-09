@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Modal, Card } from 'semantic-ui-react';
 
@@ -13,6 +13,18 @@ function ListaItems({
 
   const [selectedItem, setSelectedItem] = useState(null);
   
+  useEffect(() => {
+    if (!selectedItem) return
+  
+    const listener = () => setSelectedItem(null);
+
+    window.addEventListener('popstate', listener);
+    
+    return () => {
+      window.removeEventListener('popstate', listener);
+    }
+  }, [selectedItem])
+
   if (sendActiveItemAs && selectedItem) {
     modalProps[sendActiveItemAs] = selectedItem;
   }
@@ -26,7 +38,10 @@ function ListaItems({
     { selectedItem &&
       <Modal
         open={selectedItem != null}
-        onClose={() => setSelectedItem(null)}
+        onClose={() => {
+          setSelectedItem(null)
+          window.history.back()
+        }}
         size="tiny"
         closeIcon
       >

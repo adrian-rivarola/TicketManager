@@ -26,7 +26,7 @@ function ListaEventos(props) {
     if (data !== undefined) {
       setEvents(data['ver_eventos']);
     }
-  }, [data]);
+  }, [data, setEvents]);
 
   if (error && navigator.onLine)
     return <Redirect to="/" />
@@ -59,7 +59,6 @@ function ListaEventos(props) {
               title="asd"
               as={Link}
               to="/eventos/nuevo"
-              replace
             />
           </Segment>
         : <div className="ui active centered inline loader"></div>

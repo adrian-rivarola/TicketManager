@@ -33,8 +33,7 @@ function MenuBar({ setLocale }) {
       <Menu.Item
         as={NavLink}
         exact
-        to='/'
-        replace 
+        to='/' 
       >
         { user
           ? user.username
