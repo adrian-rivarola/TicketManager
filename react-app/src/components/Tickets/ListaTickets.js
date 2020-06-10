@@ -17,7 +17,7 @@ export default function ListaTickets(props) {
         itemName='tickets'
         itemComponent={Ticket}
         modalComponent={TicketQR}
-        modalHeader='Ticket'
+        modalHeader='ticket'
         query={GET_TICKETS_QUERY}
       />
     </Segment>

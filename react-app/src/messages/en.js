@@ -1,4 +1,5 @@
 export default {
+	'ticket': 'Ticket',
 	'tickets.title': 'My Tickets',
 	'ticket.send': 'Send Tickets',
 	'ticket.scan': 'Scan Tickets',

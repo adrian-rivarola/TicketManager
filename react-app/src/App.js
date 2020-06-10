@@ -23,7 +23,7 @@ import Register from './pages/Register';
 
 export default function App() {
   const defaultLang = navigator.language || navigator.userLanguage;
-  const [locale, setLocale] = useLocalStorage('lang', defaultLang);
+  const [locale, setLocale] = useLocalStorage('lang', defaultLang.substr(0, 2));
 
   return (
     <AuthProvider>
@@ -34,7 +34,7 @@ export default function App() {
           </Route>
           <Route exact path='/' component={Home} />
 
-          <PrivateRoute path='/eventos' component={Eventos} />
+          <PrivateRoute path='/events' component={Eventos} />
 
           <PublicRoute exact path='/login' component={Login} restricted />
           <PublicRoute exact path='/register' component={Register} restricted />

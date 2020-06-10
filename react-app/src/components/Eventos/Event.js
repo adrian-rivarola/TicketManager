@@ -27,7 +27,7 @@ function Event({ item: event, activateModal, className }) {
           content={ <FormattedMessage id='ticket.scan' /> }
           disabled={!navigator.onLine}
           as={Link}
-          to="/eventos/verificar" />
+          to="/events/scan" />
       </Card.Content>
     </Card>
   );

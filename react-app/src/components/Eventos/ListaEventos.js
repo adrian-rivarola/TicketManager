@@ -29,7 +29,7 @@ function ListaEventos(props) {
           content={ <FormattedMessage id='events.new' /> }
           disabled={!navigator.onLine}
           as={Link}
-          to='/eventos/nuevo'
+          to='/events/new'
         />
       </Segment>
     </Segment>

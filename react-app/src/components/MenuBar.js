@@ -44,7 +44,7 @@ function MenuBar({ setLocale }) {
         ? <React.Fragment>
             <Menu.Item
               as={NavLink}
-              to='/eventos'
+              to='/events'
             >
               <FormattedMessage id='events.title' />
             </Menu.Item>
