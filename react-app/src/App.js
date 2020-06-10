@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route
@@ -8,6 +8,7 @@ import { IntlProvider } from "react-intl";
 
 import { AuthProvider } from './context/auth';
 import { PublicRoute, PrivateRoute } from './util/AuthRoute';
+import { useLocalStorage } from './util/hooks';
 
 import messages from './messages';
 
@@ -21,7 +22,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 
 export default function App() {
-  const [locale, setLocale] = useState('en');
+  const defaultLang = navigator.language || navigator.userLanguage;
+  const [locale, setLocale] = useLocalStorage('lang', defaultLang);
 
   return (
     <AuthProvider>

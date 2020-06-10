@@ -19,12 +19,14 @@ export const useForm = (callback, initialState = {}) => {
   };
 };
 
-export const useLocalStorage = key => {
-  const localData = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
+export const useLocalStorage = (key, defaultValue=[]) => {
+  const localData = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : defaultValue;
   const [state, setState] = useState(localData);
 
   const updateState = newData => {
-    if (localData.length !==  newData.length) {
+    let shouldUpdate = typeof newData === 'object' ? localData.length !== newData.length : localData !== newData;
+
+    if (shouldUpdate) {
       localStorage.setItem(key, JSON.stringify(newData));
       setState(newData);
     }
