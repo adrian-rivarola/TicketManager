@@ -9,7 +9,7 @@ import ticket_mutation from './validar_ticket_mutation';
 import { Segment, Button } from 'semantic-ui-react';
 import Header from '../Header';
 
-import ScanResult from './ScanResult'
+import ScanResult from './ScanResult';
 
 const Lector = props => {
   const [scanResult, setScanResult] = useState(null);
@@ -19,10 +19,14 @@ const Lector = props => {
     update(_, { data: { validar_ticket }}) {
       setScanResult({data: validar_ticket});
       setIsScanning(false);
+
+      props.history.push('#result');
     },
     onError(error) {
       setScanResult({error});
       setIsScanning(false);
+
+      props.history.push('#result');
     }
   });
 
@@ -33,12 +37,12 @@ const Lector = props => {
       return;
     }
 
-    setIsScanning(true)
+    setIsScanning(true);
     validar({
       variables: {
         id: data
       }
-    })
+    });
   }
 
   return (
@@ -49,24 +53,26 @@ const Lector = props => {
         ? <div className="ui active centered inline loader"></div>
         : scanResult === null
           ? <div className="ticket-scanner">
-            <QrReader
-              delay={300}
-              onScan={handleScan}
-              onError={error => setScanResult({error})}
-            />
-            <br />
-            <Button
-              fluid
-              content={ <FormattedMessage id='go-back' />}
-              icon='arrow left'
-              onClick={props.history.goBack}
-            />
-          </div>
-        : <ScanResult 
+              <QrReader
+                delay={200}
+                onScan={handleScan}
+                onError={error => setScanResult({error})}
+              />
+            </div>
+        : <ScanResult
             clearResults={() => setScanResult(null)}
             {...scanResult}
           />
       }
+        <br />
+        <Button
+          basic
+          color='blue'
+          icon='arrow left'
+          disabled={isScanning}
+          content={ <FormattedMessage id='go-back' />}
+          onClick={props.history.goBack}
+        />
       </Segment>
     </Segment>
   );
