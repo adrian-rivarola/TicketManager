@@ -4,7 +4,7 @@ const User = require('../../models/User');
 
 const validar_usuario = require('../../utils/validar_usuario');
 
-async function ver_tickets(_, __, context) {
+async function tickets(_, __, context) {
 	const { id } = validar_usuario(context);
 
 	const user = await User.findById(id).populate({
@@ -60,7 +60,7 @@ async function validar_ticket(_, { id: ticket_id }, context) {
 
 module.exports = {
 	Query: {
-		ver_tickets
+		tickets
 	},
 	Mutation: {
 		crear_ticket,

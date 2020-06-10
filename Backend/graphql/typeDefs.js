@@ -37,8 +37,8 @@ module.exports = gql`
 		owner: String!
 	}
 	type Query {
-		ver_eventos: [Event]!
-		ver_tickets: [Ticket]!
+		events: [Event]!
+		tickets: [Ticket]!
 	}
 	type Mutation {
 		register(registerInput: RegisterInput): User!

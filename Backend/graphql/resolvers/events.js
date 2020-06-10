@@ -20,7 +20,7 @@ async function crear_evento(_, { eventInput }, context) {
 	return event;
 }
 
-async function ver_eventos(_, __, context) {
+async function events(_, __, context) {
 	const { id } = validar_usuario(context);
 
 	const eventos = await Event.find({organizer: id}).populate('organizer', 'username');
@@ -35,7 +35,7 @@ async function ver_eventos(_, __, context) {
 
 module.exports = {
 	Query: {
-		ver_eventos
+		events
 	},
 	Mutation: {
 		crear_evento
