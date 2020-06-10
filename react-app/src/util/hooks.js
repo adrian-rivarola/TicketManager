@@ -20,11 +20,11 @@ export const useForm = (callback, initialState = {}) => {
 };
 
 export const useLocalStorage = key => {
-  const localData = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : null;
+  const localData = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
   const [state, setState] = useState(localData);
 
   const updateState = newData => {
-    if (localData === null || (localData.length !==  newData.length)) {
+    if (localData.length !==  newData.length) {
       localStorage.setItem(key, JSON.stringify(newData));
       setState(newData);
     }

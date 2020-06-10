@@ -7,7 +7,7 @@ import { useForm } from '../../util/hooks';
 
 import gql from 'graphql-tag';
 
-function TicketForm({ event }) {
+function TicketForm({ item: event }) {
   const { values, onChange, onSubmit } = useForm(createTicketCallback, { owner: '' });
   const [message, setMessage] = useState({
     content: "",

@@ -15,6 +15,7 @@ function Ticket({ activateModal, className, item: { id, event } }) {
       to="#ticket"
     >
       <Card.Content header={event.name} />
+      <Card.Content description={event.description} />
       <Card.Content extra>
         <Icon name='calendar alternate outline' />{event.date}
       </Card.Content>
