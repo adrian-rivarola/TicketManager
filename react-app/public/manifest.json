@@ -3,17 +3,17 @@
   "name": "TicketManager",
   "icons": [
     {
-      "src": "ticket512.png",
+      "src": "icons/ticket512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "ticket128.png",
+      "src": "icons/ticket128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "ticket192.png",
+      "src": "icons/ticket192.png",
       "sizes": "192x192",
       "type": "image/png"
     }
