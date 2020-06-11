@@ -23,7 +23,7 @@ function NuevoEvento(props) {
       const data = proxy.readQuery({
         query: GET_EVENTS_QUERY
       });
-      data.ver_eventos = [crear_evento, ...data.ver_eventos];
+      data.events = [crear_evento, ...data.events];
       proxy.writeQuery({ query: GET_EVENTS_QUERY, data });
 
       props.history.goBack();
@@ -35,7 +35,6 @@ function NuevoEvento(props) {
   })
 
   function createEventCallback() {
-    console.log('form-send')
     createEvent();
   }
 

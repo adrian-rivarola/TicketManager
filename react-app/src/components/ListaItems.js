@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { useQuery} from '@apollo/react-hooks';
 import { useLocalStorage } from '../util/hooks';
 
 import { Modal, Segment, Card } from 'semantic-ui-react';
+
+import { AuthContext } from '../context/auth';
 
 function ListaItems({
   itemName,
@@ -16,10 +18,15 @@ function ListaItems({
   const [items, setItems] = useLocalStorage(itemName);
   const [selectedItem, setSelectedItem] = useState(null);
 
+  const { logout } = useContext(AuthContext);
+  
   const queryOptions = {
     skip: !navigator.onLine,
     onCompleted: (data) => data && setItems(data[itemName]),
-    onError: (error) => alert(JSON.stringify(error))
+    onError: (error) => {
+      alert(error.graphQLErrors[0].message);
+      logout();
+    }
   }
   const { loading } = useQuery(query, queryOptions);
 

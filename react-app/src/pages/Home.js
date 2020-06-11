@@ -6,9 +6,9 @@ import { AuthContext } from '../context/auth';
 import ListaTickets from '../components/Tickets/ListaTickets';
 
 export default function Home(props) {
-  const { user, logout } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return user
-    ? <ListaTickets logout={logout} />
+    ? <ListaTickets />
     : <Redirect to='/login' replace />
 }
