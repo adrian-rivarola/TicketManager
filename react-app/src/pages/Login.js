@@ -26,7 +26,7 @@ export default function Login(props) {
       props.history.push('/');
     },
     onError(err) {
-      const errores = err.graphQLErrors[0].extensions.exception.errors;
+      const errores = err.graphQLErrors[0]?.extensions.exception.errors || ["Connection Error"];
       values.password = '';
       setErrors(Object.values(errores));
       inpRef.current.focus();

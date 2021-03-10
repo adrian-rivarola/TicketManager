@@ -27,7 +27,7 @@ export default function Register(props) {
       props.history.push('/');
     },
     onError(err) {
-      const errores = err.graphQLErrors[0].extensions.exception.errors;
+      const errores = err.graphQLErrors[0]?.extensions.exception.errors || ["Connection Error"];
       values.password = '';
       values.confirmPassword = '';
       setErrors(Object.values(errores));

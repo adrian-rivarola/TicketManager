@@ -23,10 +23,7 @@ function ListaItems({
   const queryOptions = {
     skip: !navigator.onLine,
     onCompleted: (data) => data && setItems(data[itemName]),
-    onError: (error) => {
-      alert(error.graphQLErrors[0].message);
-      logout();
-    }
+    onError: () => logout()
   }
   const { loading } = useQuery(query, queryOptions);
 
