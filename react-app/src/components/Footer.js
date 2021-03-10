@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Segment, Button } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 
 const Footer = props => (
   <Segment
@@ -9,7 +9,6 @@ const Footer = props => (
     style={{padding: 12}}
   >
     Adrián Rivarola - 2020 <br />
-    <Button icon='github' basic circular as='a' href='https://github.com/adrian2358' target='_blank' />
   </Segment>
 );
 
